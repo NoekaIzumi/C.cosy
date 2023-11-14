@@ -4,7 +4,7 @@
 
 
 ### サイトテーマ
-シーン別で飲食店を検索できるSNS
+シーン別で飲食店を検索できるコミュニティサイト
 [C]Clever/Convenience 賢く/便利に
 [cosy] 居心地の良い
 ​
@@ -20,7 +20,7 @@ Retty、Hotpepperなど既存サービスではどちらかと言えば「お店
 
 ​
 ### ターゲットユーザ
-- ネットを使ってお店を探す10代後半～40代。
+- ネットを使ってお店を探す人。
 - 利用者の目的から条件を設定してお店を探したい人
 - 複数のお店を比較しながら情報を確認したいひと
 ​
@@ -32,6 +32,9 @@ Retty、Hotpepperなど既存サービスではどちらかと言えば「お店
 ​
 ## 設計書
 後ほど作成予定
+
+- 実装機能リストURL
+https://docs.google.com/spreadsheets/d/1EDOB92f5pk7_A4MDCc0rasau0GyBrmn-eo5FKkJ24-w/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,5 +43,3 @@ Retty、Hotpepperなど既存サービスではどちらかと言えば「お店
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-### 実装機能リストURL
-https://docs.google.com/spreadsheets/d/1EDOB92f5pk7_A4MDCc0rasau0GyBrmn-eo5FKkJ24-w/edit?usp=sharing
