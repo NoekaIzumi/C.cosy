@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'user/index'
+    get 'user/show'
+    get 'user/edit'
+    get 'user/favorite'
+    get 'user/follow'
+    get 'user/follower'
+  end
+  namespace :user do
+    get 'relationship/follow'
+    get 'relationship/unfollow'
+    get 'relationship/followed'
+    get 'relationship/unfollowed'
+    get 'favorite/create'
+    get 'favorite/destroy'
+  end
+  get 'user/show'
+  get 'user/edit'
+  get 'user/favorite'
+  get 'user/follow'
+  get 'user/follower'
 
   root "home#top"#Top
   get 'home/about',to: 'homes#about' , as: 'about'#about
