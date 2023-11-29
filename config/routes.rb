@@ -41,10 +41,10 @@ Rails.application.routes.draw do
    registrations: "user/registrations",
    sessions: 'user/sessions'
   }
-  
+
   get 'posts' => 'user/post#index'#ユーザートップページ
-  
-  
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

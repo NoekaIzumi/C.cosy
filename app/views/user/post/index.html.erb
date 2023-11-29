@@ -1,1 +1,13 @@
-ユーザートップページ
+<header>
+
+  <div class = "header">
+
+  <% if user_signed_in? %>
+   <%= link_to "ログアウト",  destroy_user_session_path,  method: :delete,data: { turbo_frame: "users" } %>
+  <% else %>
+   <%= link_to "新規登録", new_user_registration_path , class: 'btn btn-default' %>
+  <% end %>
+  </div>
+
+</header>
+
