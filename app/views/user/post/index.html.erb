@@ -1,13 +1,56 @@
 <header>
 
+  <div class = "logo">
+            <%= link_to posts_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  </div>
+
   <div class = "header">
 
   <% if user_signed_in? %>
-   <%= link_to "ログアウト",  destroy_user_session_path,  method: :delete,data: { turbo_frame: "users" } %>
+   <%= link_to "About", about_path , class: 'btn btn-default' %>
+   <%= button_to "ログアウト",  destroy_user_session_path,  method: :delete,data: { turbo_frame: "users" },class: 'btn btn-default' %>
+   <div class = "icon">
+            <%= link_to user_post_new_path do %>
+              <%= image_tag 'pen.jpeg', size: "30x30" %>
+            <% end %>
+   </div>
   <% else %>
+   <%= link_to "About", about_path , class: 'btn btn-default' %>
    <%= link_to "新規登録", new_user_registration_path , class: 'btn btn-default' %>
   <% end %>
   </div>
 
 </header>
 
+<style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+</style>
+
+<main>
+
+ <div class = "side-bar">
+
+
+ </div>
+
+ <div class = "container">
+
+ </div>
+</main>

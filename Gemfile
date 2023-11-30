@@ -56,3 +56,4 @@ gem "devise"
 gem "bootstrap"
 gem "webpacker"
 
+gem "jquery-rails"
