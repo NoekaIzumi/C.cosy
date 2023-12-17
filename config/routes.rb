@@ -8,10 +8,7 @@ Rails.application.routes.draw do
     get 'user/follower'
   end
   namespace :user do
-    get 'post/index'
-    get 'post/new'
-    get 'post/show'
-    get 'post/edit'
+    resources :post
     get 'relationship/follow'
     get 'relationship/unfollow'
     get 'relationship/followed'
@@ -48,7 +45,7 @@ Rails.application.routes.draw do
    sessions: 'user/sessions'
   }
 
-  get 'posts' => 'user/post#index'#ユーザートップページ
+  get 'posts',to:  'user/post#index' , as: 'posts'#ユーザートップページ
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

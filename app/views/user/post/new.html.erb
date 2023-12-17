@@ -1,2 +1,85 @@
-<h1>User::Post#new</h1>
-<p>Find me in app/views/user/post/new.html.erb</p>
+<style>
+
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+
+
+  table {
+    width:auto;
+    margin: auto;
+  }
+
+  th{
+    padding:10px;
+  }
+
+  .button {
+    margin-top:30px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+
+  }
+
+
+  </style>
+
+<h3 style= "margin-left:400px;">  新規投稿　</h3>
+<%= form_with(model: [:user, @post], local: true, url: user_post_index_path, method: :post) do |f| %>
+ <table>
+  <tr>
+    <th>お店の画像&emsp;&emsp;</th>
+    <td><%= f.file_field :image, accept: "image/*" %></td>
+  </tr>
+  <tr>
+    <th>お店の名前</th>
+    <td><%= f.text_field :restaurant_name %></td>
+  </tr>
+  <tr>
+    <th>予算</th>
+    <td>~<%= f.text_field :budget %>円</br></td>
+  </tr>
+
+  <tr>
+    <th>最寄り駅</th>
+    <td><%= f.text_area :closest %></td>
+  </tr>
+
+  <tr>
+    <th>距離</th>
+    <td><%= f.text_area :distance %></td>
+  </tr>
+
+  <tr>
+    <th>タグ</th>
+    <td><%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+         <div class='form-check'>
+           <%= tag.label class: 'form-check-label' do %>
+           <%= tag.check_box class: 'form-check-input' %>
+           <%= tag.text %>
+           <% end %>
+         </div>
+        <% end %>
+    </td>
+　</tr>
+
+　</table>
+
+ <div class = "button">
+  <%= f.submit '  投稿する  ',class: "btn btn-success" %>
+<% end %>
+</div>

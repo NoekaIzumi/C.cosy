@@ -57,3 +57,5 @@ gem "bootstrap"
 gem "webpacker"
 
 gem "jquery-rails"
+
+gem "byebug"
