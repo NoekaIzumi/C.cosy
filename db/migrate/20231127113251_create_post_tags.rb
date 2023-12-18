@@ -4,7 +4,6 @@ class CreatePostTags < ActiveRecord::Migration[7.0]
 
       t.references :post, foreign_key: true,   null: false
       t.references :tag,  foreign_key: true,   null: false
-      t.string :name,  foreign_key: true,   null: false
 
       t.timestamps
     end

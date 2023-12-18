@@ -63,7 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_042437) do
   create_table "post_tags", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_tags_on_post_id"
@@ -72,14 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_042437) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "tag_id", null: false
     t.string "restaurant_name", default: "", null: false
     t.integer "budget", null: false
     t.string "closest", default: "", null: false
     t.string "distance", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_posts_on_tag_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -116,7 +113,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_042437) do
   add_foreign_key "favorites", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
-  add_foreign_key "posts", "tags"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "relationships", "users", column: "followered_id"

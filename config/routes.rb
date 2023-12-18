@@ -1,25 +1,20 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'user/index'
-    get 'user/show'
-    get 'user/edit'
-    get 'user/favorite'
-    get 'user/follow'
-    get 'user/follower'
+    resources :user do
+      resources :posts, only: [:index, :show] # 各ユーザーの投稿一覧と詳細
+      resources :comments, only: [:index] # 各ユーザーのコメント一覧
+      patch 'suspend', on: :member # ユーザーを利用停止にするルート
+    end
+    get 'user/favorite', to: 'user#favorite' # お気に入り一覧
+    get 'user/follow', to: 'user#follow' # フォロー一覧
+    get 'user/follower', to: 'user#follower' # フォロワー一覧
+    resources :posts, only: [:show] # 投稿詳細
   end
   namespace :user do
     resources :post
-    get 'relationship/follow'
-    get 'relationship/unfollow'
-    get 'relationship/followed'
-    get 'relationship/unfollowed'
-    get 'favorite/create'
-    get 'favorite/destroy'
-    get 'user/show'
-    get 'user/edit'
-    get 'user/favorite'
-    get 'user/follow'
-    get 'user/follower'
+    resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
+    resources :favorite,only: [:create,:destroy]
+    resources :users, only: [:edit, :show,:favorite,:follow,:follower,:update]
   end
 
 
@@ -34,7 +29,8 @@ Rails.application.routes.draw do
    controllers: {
    sessions: "admin/sessions"
 }
-   get 'admin'=> 'admin/post#index'#管理者トップページ
+  get 'admin/posts',to: 'admin/post#index',as: 'admin'#管理者トップページ
+
 
 
   #ユーザー側

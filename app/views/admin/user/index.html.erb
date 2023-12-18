@@ -1,2 +1,75 @@
-<h1>Admin::User#index</h1>
-<p>Find me in app/views/admin/user/index.html.erb</p>
+<header>
+
+  <div class = "title">
+    管理者ページ
+  </div>
+
+  <div class = "logo">
+            <%= link_to posts_path do %>
+              <%= image_tag 'logo.png', size: "200x200" %>
+            <% end %>
+  </div>
+
+  <div class = "header" style="display: inline;">
+   <div class = "button">
+   <%= button_to "Posts",  admin_path , method: :get, data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
+   </div>
+   <div class = "button">
+   <%= button_to "ログアウト",  destroy_admin_session_path,  method: :delete,data: { turbo_frame: "admins" },class: 'btn btn-default btn-outline' %>
+   </div>
+  </div>
+
+
+</header>
+
+<style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 150px;
+  	margin-left:  250px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 450px;
+  }
+
+  form.button_to {
+    width:100px;
+    margin:20px;
+  }
+
+  .btn-outline {
+  background-color: transparent;
+  color: #000000; /* ボタンのテキストカラー */
+  border-color: transparent;
+}
+
+</style>
+
+ユーザー一覧
+
+<div class="container">
+  <div class="table">
+    <table class="table">
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= button_to "投稿一覧", admin_user_posts_path, method: :get, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "コメント一覧", admin_user_comments_path , method: :patch, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "利用停止", suspend_admin_user_path , method: :get, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
