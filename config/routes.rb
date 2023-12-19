@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :user do
-      resources :posts, only: [:index, :show] # 各ユーザーの投稿一覧と詳細
-      resources :comments, only: [:index] # 各ユーザーのコメント一覧
+      resources :post, only: [:index, :show] # 各ユーザーの投稿一覧と詳細
+      resources :comment, only: [:index] # 各ユーザーのコメント一覧
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
     end
     get 'user/favorite', to: 'user#favorite' # お気に入り一覧
     get 'user/follow', to: 'user#follow' # フォロー一覧
     get 'user/follower', to: 'user#follower' # フォロワー一覧
-    resources :posts, only: [:show] # 投稿詳細
+    resources :post, only: [:show] # 投稿詳細
   end
   namespace :user do
     resources :post
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :favorite,only: [:create,:destroy]
-    resources :users, only: [:edit, :show,:favorite,:follow,:follower,:update]
+    resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update]
   end
 
 

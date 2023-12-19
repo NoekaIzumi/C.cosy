@@ -48,10 +48,29 @@
   background-color: transparent;
   color: #000000; /* ボタンのテキストカラー */
   border-color: transparent;
+
+  .table {
+    margin-top:30px;
+  }
 }
 
 </style>
 
-<div>
+</br>
+
+<div class = "container">
+<div class = "title">
 管理者トップページ（投稿一覧新着順）
+</div></br>
+
+<div class="table">
+ <% @posts.each do |post| %>
+  <tr>
+    <td><%= post.restaurant_name %></td>
+    <td><%= post.budget %></td>
+    <td><%= post.closest %></td>
+    <td><%= post.distance %></td>
+  </tr>
+ <% end %>
+</div>
 </div>

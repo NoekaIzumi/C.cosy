@@ -1,5 +1,7 @@
 class User::PostController < ApplicationController
+
   def index
+    @posts= Post.all(post_params)
 
   end
 

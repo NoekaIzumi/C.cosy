@@ -5,7 +5,7 @@
   </div>
 
   <div class = "logo">
-            <%= link_to posts_path do %>
+            <%= link_to admin_path do %>
               <%= image_tag 'logo.png', size: "200x200" %>
             <% end %>
   </div>
@@ -64,9 +64,9 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= button_to "投稿一覧", admin_user_posts_path, method: :get, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "コメント一覧", admin_user_comments_path , method: :patch, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "利用停止", suspend_admin_user_path , method: :get, data: { turbo_frame: "users" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "投稿一覧",  admin_user_post_index_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "コメント一覧", admin_user_comment_index_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "利用停止", suspend_admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
         </td>
       </tr>
       <% end %>
