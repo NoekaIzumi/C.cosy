@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
   root "home#top"#Top
   get 'home/about',to: 'home#about' , as: 'about'#about
-
+  get 'search',to: 'home#search', as: 'search'#検索画面
+  get 'searched',to: 'home#searched', as: 'searched'#検索画面
 
 
   #管理者側

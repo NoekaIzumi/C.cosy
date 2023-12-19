@@ -52,11 +52,21 @@
   border-color: transparent;
 }
 
+.container {
+  display: flex;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
 </style>
 
-ユーザー一覧
-
 <div class="container">
+
+<div class = "title">
+ユーザー一覧
+</div>
   <div class="table">
     <table class="table">
       <% @users.each do |user| %>

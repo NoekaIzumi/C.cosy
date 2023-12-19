@@ -1,7 +1,7 @@
 class User::PostController < ApplicationController
 
   def index
-    @posts= Post.all(post_params)
+    @posts= Post.all
   end
 
   def new

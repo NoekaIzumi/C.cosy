@@ -41,6 +41,7 @@
   	 display: inline-block;
   }
 
+
   .icon {
     margin:30px;
   }
@@ -74,30 +75,21 @@
 }
 </style>
 
-<main>
+キーワード検索
+ <%= form_with(model: Post, method: :get) do |form| %>
+  <%= form.text_field :keyword %>
+  <%= form.submit "検索" %>
+<% end %>
 
- <div class = "side-bar">
+タグ検索
+<p id="notice"><%= notice %></p>
 
-
- </div>
-
- <div class = "container">
-
- </div>
-</main>
-
-<% @posts.each do |post| %>
-<tr>
-    <td><%= post.restaurant_name %></td>
-    <td><%= post.budget %></td>
-    <td><%= post.closest %></td>
-    <td><%= post.distance %></td>
-    <td>
-      <% post.tags.each do |tag| %>
-       <%= tag.name %>
-      <% end %>
-    </td>
-  </tr>
- <% end %>
-</div>
-</div>
+<%= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み検索',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>
