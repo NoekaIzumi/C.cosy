@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :user do
-      resources :post, only: [:index, :show] # 各ユーザーの投稿一覧と詳細
-      resources :comment, only: [:index] # 各ユーザーのコメント一覧
+      resources :post, only: [:show, #投稿管理画面
+      ]
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
     end
     get 'user/favorite', to: 'user#favorite' # お気に入り一覧
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'home/about',to: 'home#about' , as: 'about'#about
 
 
+
   #管理者側
   devise_for :admins,
    skip: [:registrations, :passwords],#不要なルーティングを削除
@@ -30,7 +31,8 @@ Rails.application.routes.draw do
    sessions: "admin/sessions"
 }
   get 'admin/posts',to: 'admin/post#index',as: 'admin'#管理者トップページ
-
+  get 'admin/user/:id/posts', to: 'admin/post#index_user', as: 'user_posts'#各ユーザーの投稿一覧
+  get 'admin/user/:id/comments', to: 'admin/post#comments', as: 'user_comments' # 各ユーザーのコメント一覧
 
 
   #ユーザー側

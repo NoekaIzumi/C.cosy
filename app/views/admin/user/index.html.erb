@@ -64,9 +64,9 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= button_to "投稿一覧",  admin_user_post_index_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "コメント一覧", admin_user_comment_index_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "利用停止", suspend_admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "投稿一覧",  user_posts_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "コメント一覧", user_comments_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <%= button_to "利用停止", suspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
         </td>
       </tr>
       <% end %>
