@@ -27,8 +27,12 @@
             <% end %>
    </div>
   <% else %>
-   <%= link_to "About", about_path , class: 'btn btn-default' %>
-   <%= link_to "新規登録", new_user_registration_path , class: 'btn btn-default' %>
+  <div class = "button">
+   <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
+  </div>
+  <div class = "button">
+   <%= button_to "新規登録",  new_user_registration_path , class: 'btn btn-default',data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
+  </div>
   <% end %>
   </div>
 
@@ -68,9 +72,35 @@
   color: #000000; /* ボタンのテキストカラー */
   border-color: transparent;
 
+  .container{
+    display: flex;
+  }
+
+
+ .post-container td {
+    border: 1px solid black; /* セルに実線の枠線を追加 */
+    padding: 10px; /* 枠線とコンテンツの間の余白を追加 */
+  }
+
+   a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:visited{
+    color: black;
+}
+
+  table {
+    padding: 30px;
+  }
+
   .table {
     margin-top:30px;
+
   }
+  th, td {
+  text-align: left;
 }
 </style>
 
@@ -83,21 +113,41 @@
 
  <div class = "container">
 
+<table class="table">
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td colspan="6"> <!-- 6列を占めるtd要素 -->
+        <%= link_to  user_post_path(post) do %>
+          <div class="post-container"> <!-- 新しいdiv要素を追加 -->
+            <table> <!-- 投稿ごとのテーブルを作成 -->
+              <tr>
+                <td><%= post.restaurant_name %></td>
+              </tr>
+              <tr>
+                <th style="text-align: left;">予算：</th><td><%= post.budget %></td>
+                <th>最寄り駅：</th><td><%= post.closest %></td>
+                <th>最寄駅からの距離：</th><td><%= post.distance %></td>
+              </tr>
+              <tr>
+                <th style="text-align: left;">このお店につけられたタグ：</th>
+                <td>
+                  <% post.tags.each do |tag| %>
+                    <%= tag.name %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div> <!-- div要素の終了タグを追加 -->
+          <% end %>
+        </td>
+      </tr>
+      <tr> <!-- 新しい行を追加 -->
+        <td colspan="6"></td> <!-- 6列を占める空のセルを追加 -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
  </div>
 </main>
-
-<% @posts.each do |post| %>
-<tr>
-    <td><%= post.restaurant_name %></td>
-    <td><%= post.budget %></td>
-    <td><%= post.closest %></td>
-    <td><%= post.distance %></td>
-    <td>
-      <% post.tags.each do |tag| %>
-       <%= tag.name %>
-      <% end %>
-    </td>
-  </tr>
- <% end %>
-</div>
-</div>
