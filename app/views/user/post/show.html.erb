@@ -31,7 +31,7 @@
    <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
   </div>
   <div class = "button">
-   <%= button_to "新規登録",  new_user_registration_path , class: 'btn btn-default',data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
+   <%= button_to "新規登録",  new_user_registration_path, method: :get,data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
   </div>
   <% end %>
   </div>
@@ -85,6 +85,16 @@
  }
 
 
+   a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:visited{
+    color: black;
+}
+
+
 </style>
 
 <div class = "container">
@@ -124,7 +134,19 @@
   最寄駅からの距離：<%= @post.distance %>
 </div>
 
-♥お気に入り <!--お気に入り機能<-->　♡いいね！××件<!--いいね！機能<-->
+<% if user_signed_in? %>
+ <% if @post.favorite?(current_user) %>
+    <%= link_to user_post_favorite_path(@post), method: :delete do %>
+       <span>❤︎</span>
+    <% end %>
+ <% else %>
+    <%= link_to user_post_favorite_index_path(@post), method: :post, remote: true do %>
+        <p><span>❤︎</span>お気に入り</p>
+    <% end %>
+ <% end %>
+<% end %>
+
+♡いいね！××件<!--いいね！機能<-->
 
 コメント （×件）
 

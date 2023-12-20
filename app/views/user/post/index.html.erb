@@ -31,7 +31,7 @@
    <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
   </div>
   <div class = "button">
-   <%= button_to "新規登録",  new_user_registration_path , class: 'btn btn-default',data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
+   <%= button_to "新規登録",  new_user_registration_path, method: :get, data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
   </div>
   <% end %>
   </div>
@@ -114,9 +114,9 @@
 </style>
 
 <main>
-  
+
  <div class = "title">
-   
+
  </div>
 
  <div class = "side-bar">
@@ -138,7 +138,7 @@
                 <td><%= post.restaurant_name %></td>
               </tr>
               <tr>
-                <th style="text-align: left;">予算：</th><td><%= post.budget %></td>
+                <th style="text-align: left;">予算：</th><td><%= post.budget %>円</td>
                 <th>最寄り駅：</th><td><%= post.closest %></td>
                 <th>最寄駅からの距離：</th><td><%= post.distance %></td>
               </tr>

@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     resources :post, only: [:show] # 投稿詳細
   end
   namespace :user do
-    resources :post
+    resources :post do
+      resources :favorite,only: [:create,:destroy]
+    end
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
-    resources :favorite,only: [:create,:destroy]
-    resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update]
+    resources :user, only: [:edit, :show,:follow,:follower,:update]
   end
 
 
