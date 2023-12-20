@@ -8,7 +8,7 @@
 
   <div class = "logo">
             <%= link_to posts_path do %>
-              <%= image_tag 'logo.png', size: "100x100" %>
+              <%= image_tag 'logo.png', size: "150x150" %>
             <% end %>
   </div>
 
@@ -40,13 +40,17 @@
 
 <style>
 
+ header{
+    text-align: center;
+ }
 
   div {
   	 display: inline-block;
   }
 
   .icon {
-    margin:30px;
+    margin-right:30px;
+    margin-left:30px;
   }
 
   .logo {
@@ -64,22 +68,27 @@
 
   form.button_to {
     width:100px;
-    margin:20px;
+    margin-right:20px;
+    margin-left:20px;
   }
 
   .btn-outline {
   background-color: transparent;
   color: #000000; /* ボタンのテキストカラー */
   border-color: transparent;
+  }
 
-  .container{
-    display: flex;
+ .container{
+   display: flex;
+   justify-content: center;
+   width: 100%;
   }
 
 
- .post-container td {
+ .post-container {
     border: 1px solid black; /* セルに実線の枠線を追加 */
     padding: 10px; /* 枠線とコンテンツの間の余白を追加 */
+    width: 100%;
   }
 
    a {
@@ -92,7 +101,7 @@
 }
 
   table {
-    padding: 30px;
+    padding: 10px;
   }
 
   .table {
@@ -105,6 +114,10 @@
 </style>
 
 <main>
+  
+ <div class = "title">
+   
+ </div>
 
  <div class = "side-bar">
 

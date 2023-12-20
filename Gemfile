@@ -59,3 +59,4 @@ gem "webpacker"
 gem "jquery-rails"
 
 gem "byebug"
+gem "activestorage"
