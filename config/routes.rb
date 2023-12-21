@@ -1,21 +1,26 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :user do
-      resources :post, only: [:show, #投稿管理画面
-      ]
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
+     resources :follow,only: [:index] # フォロー一覧
+     resources :followed,only: [:index] # フォロワー一覧
     end
-    get 'user/favorite', to: 'user#favorite' # お気に入り一覧
-    get 'user/follow', to: 'user#follow' # フォロー一覧
-    get 'user/follower', to: 'user#follower' # フォロワー一覧
-    resources :post, only: [:show] # 投稿詳細
+    resources :post, only: [:show, #投稿管理画面
+      ] do
+     resources :favorite,only: [:index] # お気に入り一覧
+    end
+
+
   end
   namespace :user do
     resources :post do
       resources :favorite,only: [:create,:destroy]
     end
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
-    resources :user, only: [:edit, :show,:follow,:follower,:update]
+    resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
+      resources :follow,only: [:create,:destroy,:index]
+      resources :followed,only: [:create,:destroy,:index]
+    end
   end
 
 
@@ -23,7 +28,6 @@ Rails.application.routes.draw do
   root "home#top"#Top
   get 'home/about',to: 'home#about' , as: 'about'#about
   get 'search',to: 'home#search', as: 'search'#検索画面
-  get 'searched',to: 'home#searched', as: 'searched'#検索画面
 
 
   #管理者側

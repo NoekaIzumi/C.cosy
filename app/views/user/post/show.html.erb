@@ -68,7 +68,7 @@
   }
 
   form.button_to {
-    width:100px;
+    width:150px;
     margin:20px;
   }
 
@@ -84,16 +84,10 @@
    padding-left:50px;
  }
 
-
-   a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:visited{
-    color: black;
-}
-
+ .favorite_button{
+   text-align: left;
+   margin-left: -30px;
+ }
 
 </style>
 
@@ -134,24 +128,35 @@
   最寄駅からの距離：<%= @post.distance %>
 </div>
 
+<div class = "favorite_button">
 <% if user_signed_in? %>
- <% if @post.favorite?(current_user) %>
-    <%= link_to user_post_favorite_path(@post), method: :delete do %>
-       <span>❤︎</span>
-    <% end %>
- <% else %>
-    <%= link_to user_post_favorite_index_path(@post), method: :post, remote: true do %>
-        <p><span>❤︎</span>お気に入り</p>
-    <% end %>
+  <% if @post.favorite?(current_user) %>
+  <%= button_to user_post_favorite_path(@post), method: :delete ,class: 'btn btn-default btn-outline' do %>
+  <p><span>❤︎</span>お気に入り解除</p>
+  <% end %>
+  <% else %>
+  <%= button_to user_post_favorite_index_path(@post), method: :post, remote: true,class: 'btn btn-default btn-outline' do %>
+  <p><span>♡︎</span>お気に入り</p>
+  <% end %>
  <% end %>
 <% end %>
+</div>
 
-♡いいね！××件<!--いいね！機能<-->
+<div class = "favorite">
+  <p><span>♡︎</span>いいね！××件</p>
+</div>
 
-コメント （×件）
+<div class = "comments">
+  <p>コメント （×件）</p>
+  <p><!--コメントしたuser<--></p>
+  <!--コメント欄<-->
+  <p><!--コメントした日時<--></p>
+</div>
 
-<!--コメントしたuser<--> <!--コメント欄<-->
-<!--コメントした日時<-->
+
+
+
+
 
 
 

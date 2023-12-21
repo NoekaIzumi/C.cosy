@@ -5,22 +5,22 @@ class HomeController < ApplicationController
   def about
   end
 
-  def search#検索画面
-    #キーワード検索機能
-    if params[:keyword].present?
-      @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
-      @keyword = params[:keyword]
+  def search
+
+   tag_id = params[:tag_id]
+    if tag_id.present?
+      @posts = Tag.find(params[:tag_id]).posts
     else
       @posts = Post.all
     end
 
-    #タグ検索機能
+   post_keyword = params[:post_keyword]
+    if post_keyword.present?
+      @posts = Post.where('post_keyword LIKE ?', "%#{params[:post_keyword]}%")
+    else
+      @posts = Post.all
+    end
+
   end
-
-
-  def searched#検索結果画面
-
-  end
-
 
 end

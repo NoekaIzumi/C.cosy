@@ -82,7 +82,7 @@
 
 キーワード検索
  <%= form_with(model: Post, method: :get) do |form| %>
-  <%= form.text_field :keyword %>
+  <%= form.text_field :post_keyword %>
   <%= form.submit "検索" %>
 <% end %>
 
