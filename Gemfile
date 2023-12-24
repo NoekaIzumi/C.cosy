@@ -53,10 +53,11 @@ group :test do
 end
 
 gem "devise"
-gem "bootstrap"
-gem "webpacker"
+#gem "bootstrap"
+#gem "webpacker"
 
-gem "jquery-rails"
+#gem "jquery-rails"
 
 gem "byebug"
 gem "activestorage"
+gem 'kaminari'

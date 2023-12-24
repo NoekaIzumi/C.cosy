@@ -1,167 +1,56 @@
-<header>
-<script src="https://kit.fontawesome.com/153870c081.js" crossorigin="anonymous"></script>
-  <div class = "icon">
-   <%= link_to search_path do %>
-    <i class="fas fa-search"></i>
-   <% end %>
-  </div>
-
-  <div class = "logo">
-            <%= link_to posts_path do %>
-              <%= image_tag 'logo.png', size: "150x150" %>
-            <% end %>
-  </div>
-
-  <div class = "header">
-
-  <% if user_signed_in? %>
-  <div class = "button">
-   <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <div class = "button">
-   <%= button_to "ログアウト",  destroy_user_session_path,  method: :delete,data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
-  </div>
-   <div class = "icon">
-            <%= link_to new_user_post_path do %>
-              <%= image_tag 'pen.jpeg', size: "30x30" %>
-            <% end %>
-   </div>
-  <% else %>
-  <div class = "button">
-   <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <div class = "button">
-   <%= button_to "新規登録",  new_user_registration_path, method: :get, data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <% end %>
-  </div>
-
-</header>
-
-<style>
-
- header{
-    text-align: center;
- }
-
-  div {
-  	 display: inline-block;
-  }
-
-  .icon {
-    margin-right:30px;
-    margin-left:30px;
-  }
-
-  .logo {
-  	margin-right: 150px;
-  	margin-left:  250px;
-  }
-
-
-  .header {
-  padding-right : 20px;
-  margin-top: 20px;
-  margin-bottom: 60px;
-  width: 450px;
-  }
-
-  form.button_to {
-    width:100px;
-    margin-right:20px;
-    margin-left:20px;
-  }
-
-  .btn-outline {
-  background-color: transparent;
-  color: #000000; /* ボタンのテキストカラー */
-  border-color: transparent;
-  }
-
- .container{
-   display: flex;
-   justify-content: center;
-   width: 100%;
-  }
-
-
- .post-container {
-    border: 1px solid black; /* セルに実線の枠線を追加 */
-    padding: 10px; /* 枠線とコンテンツの間の余白を追加 */
-    width: 100%;
-  }
-
-   a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:visited{
-    color: black;
-}
-
-  table {
-    padding: 10px;
-  }
-
-  .table {
-    margin-top:30px;
-
-  }
-  th, td {
-  text-align: left;
-}
-</style>
-
 <main>
+  <div class = "title">
+  
+  </div>
+  
+  <div class = "side-bar">
+  
+  </div>
 
- <div class = "title">
-
- </div>
-
- <div class = "side-bar">
-
-
- </div>
-
- <div class = "container">
-
-<table class="table">
-  <tbody>
-
-    <% @posts.each do |post| %>
-      <tr>
-        <td colspan="6"> <!-- 6列を占めるtd要素 -->
-        <%= link_to  user_post_path(post) do %>
-          <div class="post-container"> <!-- 新しいdiv要素を追加 -->
-            <table> <!-- 投稿ごとのテーブルを作成 -->
-              <tr>
-                <td><%= post.restaurant_name %></td>
-              </tr>
-              <tr>
-                <th style="text-align: left;">予算：</th><td><%= post.budget %>円</td>
-                <th>&nbsp;最寄り駅：</th><td><%= post.closest %>駅</td>
-                <th>&nbsp;最寄駅からの距離：</th><td><%= post.distance %></td>
-              </tr>
-              <tr>
-                <th style="text-align: left;">このお店につけられたタグ：</th>
-                <td>
-                  <% post.tags.each do |tag| %>
-                    <%= tag.name %>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          </div> <!-- div要素の終了タグを追加 -->
-          <% end %>
-        </td>
-      </tr>
-      <tr> <!-- 新しい行を追加 -->
-        <td colspan="6"></td> <!-- 6列を占める空のセルを追加 -->
-      </tr>
+  <div class = "container">
+    <%= form_with(url: user_post_index_path, method: :get, local: true) do |form| %>
+      <%= form.text_field :keyword, value: params[:keyword] %>
+      
+      <%= form.collection_select :tag_id, Tag.all, :id, :name, { include_blank: '--タグで絞り込み検索--', selected: params[:tag_id] }, { } %>
+      
+      <%= form.submit "検索" %>
     <% end %>
-  </tbody>
-</table>
+  
 
- </div>
+    <table class="table table_index">
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td colspan="6"> <!-- 6列を占めるtd要素 -->
+            <%= link_to  user_post_path(post) do %>
+              <div class="post-container"> <!-- 新しいdiv要素を追加 -->
+                <table> <!-- 投稿ごとのテーブルを作成 -->
+                  <tr>
+                    <td><%= post.restaurant_name %></td>
+                  </tr>
+                  <tr>
+                    <th style="text-align: left;">予算：</th><td><%= post.budget %>円</td>
+                    <th>&nbsp;最寄り駅：</th><td><%= post.closest %>駅</td>
+                    <th>&nbsp;最寄駅からの距離：</th><td><%= post.distance %></td>
+                  </tr>
+                  <tr>
+                    <th style="text-align: left;">このお店につけられたタグ：</th>
+                    <td>
+                      <% post.tags.each do |tag| %>
+                        <%= tag.name %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </div> <!-- div要素の終了タグを追加 -->
+              <% end %>
+            </td>
+          </tr>
+          <tr> <!-- 新しい行を追加 -->
+            <td colspan="6"></td> <!-- 6列を占める空のセルを追加 -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </main>

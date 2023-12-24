@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   namespace :user do
     resources :post do
       resources :favorite,only: [:create,:destroy]
+      resources :comments, only:[:create, :destroy]#コメント機能
+
     end
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
       resources :followed,only: [:create,:destroy,:index]
     end
   end
+
 
 
 

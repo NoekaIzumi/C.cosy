@@ -1,11 +1,9 @@
-import { createApp } from 'vue'
-import App from '../components/App.vue'
-import 'jquery'
-import 'popper.js'
-import 'bootstrap/dist/js/bootstrap'
-import '../stylesheets/application.scss'
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import "@hotwired/turbo-rails"
+import "controllers"
 
-document.addEventListener('DOMContentLoaded', () => {
-  const app = createApp(App)
-  app.mount('#app')
-})
+import jquery from "jquery"
+import "bootstrap"
+
+window.$ = jquery
+

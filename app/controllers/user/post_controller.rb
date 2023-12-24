@@ -2,20 +2,9 @@ class User::PostController < ApplicationController
 
   def index
 
-   tag_id = params[:tag_id]
-    if tag_id.present?
-      @posts = Tag.find(params[:tag_id]).posts
-    else
-      @posts = Post.all
-    end
-
-   post_keyword = params[:post_keyword]
-    if post_keyword.present?
-      @posts = Post.where('post_keyword LIKE ?', "%#{params[:post_keyword]}%")
-    else
-      @posts = Post.all
-    end
-
+    @posts = Post.includes(:post_tags)
+    @posts = @posts.where('restaurant_name LIKE ? OR closest LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%") if params[:keyword].present?
+    @posts = @posts.where('post_tags.tag_id': params[:tag_id]) if params[:tag_id].present?
   end
 
   def new
@@ -36,6 +25,9 @@ class User::PostController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments= Comment.where(post_id: @post.id)
+    @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
 
   def edit

@@ -1,16 +1,73 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
- @import 'bootstrap';
+ header{
+    text-align: center;
+    display:flex;
+ }
+
+  .icon_search,.icon_post {
+    
+   
+    width: 30px;
+    white-space: nowrap;
+  }
+
+  .logo {
+  	margin-right: 100px;
+  	margin-left:  100px;
+  }
+
+  .header {
+ 
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 700px;
+  text-align: buttom;
+  }
+
+  .logo,.about,.sign_out,.sign_up,.icon {
+       display: inline-block;
+}
+  form.button_to {
+    width:82px;
+    margin-right:20px;
+    margin-left:20px;
+  }
+
+  .btn-outline {
+  background-color: transparent;
+  color: #000000; /* ボタンのテキストカラー */
+  border-color: transparent;
+  }
+
+ .container{
+   display: flex;
+   justify-content: center;
+   width: 100%;
+  }
+
+
+ .post-container {
+    border: 1px solid black; /* セルに実線の枠線を追加 */
+    padding: 10px; /* 枠線とコンテンツの間の余白を追加 */
+    width: 100%;
+  }
+
+   a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:visited{
+    color: black;
+}
+
+  table {
+    padding: 10px;
+  }
+
+  .table {
+    margin-top:30px;
+
+  }
+  th, td {
+  text-align: left;
+}

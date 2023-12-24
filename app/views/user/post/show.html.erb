@@ -1,82 +1,6 @@
-<header>
-<script src="https://kit.fontawesome.com/153870c081.js" crossorigin="anonymous"></script>
-  <div class = "icon">
-   <%= link_to search_path do %>
-    <i class="fas fa-search"></i>
-   <% end %>
-  </div>
 
-  <div class = "logo">
-            <%= link_to posts_path do %>
-              <%= image_tag 'logo.png', size: "150x150" %>
-            <% end %>
-  </div>
-
-  <div class = "header">
-
-  <% if user_signed_in? %>
-  <div class = "button">
-   <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <div class = "button">
-   <%= button_to "ログアウト",  destroy_user_session_path,  method: :delete,data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
-  </div>
-   <div class = "icon">
-            <%= link_to new_user_post_path do %>
-              <%= image_tag 'pen.jpeg', size: "30x30" %>
-            <% end %>
-   </div>
-  <% else %>
-  <div class = "button">
-   <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <div class = "button">
-   <%= button_to "新規登録",  new_user_registration_path, method: :get,data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
-  </div>
-  <% end %>
-  </div>
-
-</header>
 
 <style>
-
- header{
-    text-align: center;
- }
-
-
-  div {
-  	 display: inline-block;
-  }
-
-
-  .icon {
-    margin:30px;
-  }
-
-  .logo {
-  	margin-right: 150px;
-  	margin-left:  250px;
-  }
-
-
-  .header {
-  padding-right : 20px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  width: 450px;
-  }
-
-  form.button_to {
-    width:150px;
-    margin:20px;
-  }
-
-  .btn-outline {
-  background-color: transparent;
-  color: #000000; /* ボタンのテキストカラー */
-  border-color: transparent;
-  }
 
  .container{
    display:flex;
@@ -139,8 +63,41 @@
   <p><span>♡︎</span>お気に入り</p>
   <% end %>
  <% end %>
-<% end %>
 </div>
+
+
+      <div class="comments ml-5 mt-5">
+        <%= form_with(model:[@post, @comment], url: user_post_comments_path(@post), local: true) do |f| %>
+        <%= f.text_area :comment, :size=>"60x3",placeholder: "コメントする" %>
+        <%= f.submit "送信する", class: "btn btn-success mb-4" %>
+        <% end %>
+        <p>コメント件数：
+        <%= @post.comments.count %></p>
+       <% @comments.each do |comment| %>
+	  <div class="comments-index mb-2">
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+          <div class="d-flex">
+            <%= comment.comment %>
+            <% if comment.user == current_user %>
+            <div class="comment-delete">
+              <%= link_to "削除", user_post_comment_path(comment.post, comment), method: :delete, class: "btn-sm btn-danger" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+    </div>
+
+
+
+
+
+
+<% end %>
+
 
 <div class = "favorite">
   <p><span>♡︎</span>いいね！××件</p>
