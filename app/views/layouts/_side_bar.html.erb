@@ -1,0 +1,34 @@
+<% if controller_name != "home" || action_name != "top" %>
+  <side_bar>
+    <div class="user_info">
+      <% if user_signed_in? %>
+        <div class = "user_profile">
+          <%= link_to edit_user_user_path(@user) do %>
+            <%= image_tag @user.image,size: "100x100" %>
+          <% end %>
+        </div>
+        <div class = "user_name">
+          <%= @user.name %>
+        </div>
+        <div class="email">
+          <p>メールアドレス</p>
+          <%= @user.email %>
+        </div>
+        <p>フォロー</p>
+        <p>フォロワー</p>
+        <div class = "favorited">
+          <p>いいね！</p>
+        </div>
+        <div class = "favorite_index">
+          <p>お気に入り</p>
+          <%= link_to user_user_favorite_index_path(@user) do %>
+            <%= @user.favorites.count %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>ゲスト</p>
+      <% end %>
+      <p>お気に入り</p>
+    </div>
+  </side_bar>
+<% end %>

@@ -81,7 +81,7 @@
             <%= comment.comment %>
             <% if comment.user == current_user %>
             <div class="comment-delete">
-              <%= link_to "削除", user_post_comment_path(comment.post, comment), method: :delete, class: "btn-sm btn-danger" %>
+              <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, class: "btn-sm btn-danger" %>
             </div>
           </div>
         </div>

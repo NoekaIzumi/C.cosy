@@ -1,3 +1,4 @@
+<% if controller_name != "home" || action_name != "top" %>
 <header>
   <div class = "icon_search">
    <%= link_to search_path do %>
@@ -34,3 +35,4 @@
     <% end %>
   </div>
 </header>
+<% end %>

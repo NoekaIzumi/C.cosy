@@ -16,12 +16,12 @@ Rails.application.routes.draw do
     resources :post do
       resources :favorite,only: [:create,:destroy]
       resources :comments, only:[:create, :destroy]#コメント機能
-
     end
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
       resources :follow,only: [:create,:destroy,:index]
       resources :followed,only: [:create,:destroy,:index]
+      resources :favorite,only: [:index]
     end
   end
 

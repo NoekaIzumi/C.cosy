@@ -5,10 +5,12 @@ class User::PostController < ApplicationController
     @posts = Post.includes(:post_tags)
     @posts = @posts.where('restaurant_name LIKE ? OR closest LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%") if params[:keyword].present?
     @posts = @posts.where('post_tags.tag_id': params[:tag_id]) if params[:tag_id].present?
+    @user = current_user
   end
 
   def new
     @post=Post.new
+    @user = User.find(current_user.id)
   end
 
   def create
@@ -24,6 +26,7 @@ class User::PostController < ApplicationController
   end
 
   def show
+    @user = current_user
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments= Comment.where(post_id: @post.id)

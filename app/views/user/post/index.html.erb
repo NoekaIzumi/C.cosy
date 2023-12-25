@@ -1,22 +1,20 @@
 <main>
   <div class = "title">
-  
+      <p>お店を検索する</p>
   </div>
-  
-  <div class = "side-bar">
-  
-  </div>
-
-  <div class = "container">
+  <div class = "search_box">
     <%= form_with(url: user_post_index_path, method: :get, local: true) do |form| %>
       <%= form.text_field :keyword, value: params[:keyword] %>
-      
+
       <%= form.collection_select :tag_id, Tag.all, :id, :name, { include_blank: '--タグで絞り込み検索--', selected: params[:tag_id] }, { } %>
-      
+
       <%= form.submit "検索" %>
     <% end %>
+  </div>
+  
   
 
+  <div class = "container">
     <table class="table table_index">
       <tbody>
         <% @posts.each do |post| %>

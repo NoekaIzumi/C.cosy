@@ -3,6 +3,7 @@ class User::UserController < ApplicationController
   end
 
   def edit
+   @user = User.find(current_user.id)
   end
 
   def favorite
@@ -15,10 +16,18 @@ class User::UserController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update
+    @user = current_user
     @user.image.attach(params[:user][:image])
-    redirect_to user_user_show_path
-
+      if @user.update(user_params)
+        sign_in :user, @user, bypass: true
+        redirect_to edit_user_user_path(@user)
+      else
+      	render :edit
+      end
   end
+
+  def user_params
+  params.require(:user).permit(:image, :name, :email, :password)
+  end
+
 end
