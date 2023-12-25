@@ -53,11 +53,17 @@
    display: flex;
    justify-content: center;
    width: 100%;
+   padding:10px;
   }
 
 
  .post-container {
-    border: 1px solid black; /* セルに実線の枠線を追加 */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 10px;
+    max-width: 800px;
+    text-align: left;
+    border: 2px solid black; /* セルに実線の枠線を追加 */
     padding: 10px; /* 枠線とコンテンツの間の余白を追加 */
     width: 100%;
   }
