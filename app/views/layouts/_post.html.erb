@@ -1,15 +1,17 @@
  <div class = "container">
      <div class="post-container">
       <div class="post-info">
-        <div><h4><%= post.restaurant_name %></h4></div>
-        <div><strong>予算： </strong><%= post.budget %>円</div>
-        <div><strong>最寄り駅： </strong><%= post.closest %>駅</div>
-        <div><strong>最寄駅からの距離： </strong><%= post.distance %></div>
-        <div><strong>このお店につけられたタグ：</strong></div>
-        <div class="tag-list">
-          <% post.tags.each do |tag| %>
-            <span><%= tag.name %></span>
-          <% end %>
+        <%= link_to  user_post_path(post) do %>
+          <div><h4><%= post.restaurant_name %></h4></div>
+          <div><strong>予算： </strong><%= post.budget %>円</div>
+          <div><strong>最寄り駅： </strong><%= post.closest %>駅</div>
+          <div><strong>最寄駅からの距離： </strong><%= post.distance %></div>
+          <div><strong>このお店につけられたタグ：</strong></div>
+          <div class="tag-list">
+            <% post.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+        <% end %>
         </div>
       </div>
     </div>

@@ -37,25 +37,43 @@
   border-color: transparent;
   }
 
+.flex-container {
+  display: flex;
+}
+
+side_bar {
+  flex: 1;
+  margin-left: 5px;
+}
+
+main{
+  flex: 2;
+}
+
+
   .title{
    display: flex;
    justify-content: center;
-   width: 100%;
   }
 
   .search_box {
    display: flex;
    justify-content: center;
-   width: 100%;
   }
 
- .container{
-   display: flex;
-   justify-content: center;
-   width: 100%;
-   padding:10px;
-  }
+  .container {
+  display: flex;
+  justify-content: center;
+}
 
+.side_bar {
+  width: 33%;
+  margin-left: 2%;
+}
+
+.content {
+  width: 65%;
+}
 
  .post-container {
     display: grid;
@@ -75,7 +93,8 @@
 
   a:visited{
     color: black;
-}
+
+  }
 
   table {
     padding: 10px;
@@ -83,8 +102,13 @@
 
   .table {
     margin-top:30px;
-
   }
+  
   th, td {
   text-align: left;
+  padding: 10px;
 }
+
+  .button {
+    text-align: center;
+  }

@@ -1,6 +1,9 @@
 
-
 <style>
+
+ .post_title{
+   text-align: left;
+ }
 
  .container{
    display:flex;
@@ -15,17 +18,15 @@
 
 </style>
 
+<main>
 <div class = "container">
 
-<div class = "title">
+<div class = "post_title">
 <%= @post.restaurant_name %> の詳細
 </div>
 
-<div class = "user_image" >
-  <%# <%= image_tag @user.get_profile_image(100,100) %><!--user画像<-->
-</div>
-
 <div class = "user" >
+  <%= image_tag @post.user.image,size: "50x50" %>
   <%= @post.user.name %>(投稿者)
 </div>
 
@@ -34,7 +35,7 @@
 </div>
 
 <div class = "tags">
-  このお店につけられたタグ：
+  このお店につけられたタグ：</br>
   <% @post.tags.each do |tag| %>
     <%= tag.name %>
   <% end %>
@@ -45,7 +46,7 @@
 </div>
 
 <div class ="closest">
-  最寄り駅：<%= @post.closest %>
+  最寄り駅：<%= @post.closest %>駅
 </div>
 
 <div class ="distance">
@@ -64,8 +65,6 @@
   <% end %>
  <% end %>
 </div>
-
-
       <div class="comments ml-5 mt-5">
         <%= form_with(model:[@post, @comment], url: user_post_comments_path(@post), local: true) do |f| %>
         <%= f.text_area :comment, :size=>"60x3",placeholder: "コメントする" %>
@@ -76,7 +75,7 @@
        <% @comments.each do |comment| %>
 	  <div class="comments-index mb-2">
           <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+          <%= comment.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
           <div class="d-flex">
             <%= comment.comment %>
             <% if comment.user == current_user %>
@@ -85,36 +84,14 @@
             </div>
           </div>
         </div>
-        <% end %>
+            <p><!--コメントしたuser<--></p>
+            <!--コメント欄<-->
+            <p><!--コメントした日時<--></p>
+          <% end %>
         <% end %>
         <%= paginate @comments %>
       </div>
     </div>
-
-
-
-
-
-
 <% end %>
-
-
-<div class = "favorite">
-  <p><span>♡︎</span>いいね！××件</p>
-</div>
-
-<div class = "comments">
-  <p>コメント （×件）</p>
-  <p><!--コメントしたuser<--></p>
-  <!--コメント欄<-->
-  <p><!--コメントした日時<--></p>
-</div>
-
-
-
-
-
-
-
-
+</main>
 </div>
