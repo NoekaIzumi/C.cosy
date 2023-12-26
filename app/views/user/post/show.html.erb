@@ -26,8 +26,10 @@
 </div>
 
 <div class = "user" >
-  <%= image_tag @post.user.image,size: "50x50" %>
-  <%= @post.user.name %>(投稿者)
+  <%= link_to user_user_path(@post.user) do %>
+    <%= image_tag @post.user.image,size: "50x50" %>
+    <%= @post.user.name %>(投稿者)
+  <% end %>
 </div>
 
 <div class = "image">
@@ -46,7 +48,7 @@
 </div>
 
 <div class ="closest">
-  最寄り駅：<%= @post.closest %>駅
+  最寄り駅：<%= @post.closest %>
 </div>
 
 <div class ="distance">

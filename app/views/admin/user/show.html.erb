@@ -1,2 +1,107 @@
-<h1>Admin::User#show</h1>
-<p>Find me in app/views/admin/user/show.html.erb</p>
+<%= stylesheet_link_tag 'admin' %>
+
+<%= render partial: "layouts/admin_header" %>
+
+<style>
+
+  main {
+    width: 350px;
+    margin-left:400px;
+  }
+
+  .sub_title {
+    text-align: center;
+  }
+
+  .container {
+  display: flex;
+  justify-content: center; /* container内を中央揃えにする */
+}
+
+  .user_info {
+    width: 100%;
+  }
+
+  .user_profile{
+    display: flex;
+    gap: 10px;
+  }
+
+  .user_name{
+    margin-bottom: 0px;
+  }
+
+  .user_name,.email{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px;
+    height: 30px;
+  }
+
+  .favorite,.follow {
+    display: flex;
+    margin-left: 110px;
+  }
+
+  .favorite_index,.follows,.followers{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+</style>
+
+<main>
+  <div class="sub_title">
+    <p>ユーザー情報</p>
+  </div>
+  <div class="container">
+    <div class="user_info">
+      <div class="user_profile">
+        <% if @user.image.present? %>
+          <%= image_tag @user.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'guest.png' %>
+        <% end %>
+        <div class = "user">
+          <div class="user_name">
+            <p>ユーザー名</p>
+            <%= @user.name %>
+          </div></br>
+          <div class="email">
+            <p>メールアドレス</p>
+            <%= @user.email %>
+          </div>
+        </div>
+      </div>
+
+      <div class = "favorite">
+        <div class="favorited">
+          <p>いいね！</p>
+        </div>
+        <div class="favorite_index">
+          <p>お気に入り</p>
+          <%= link_to user_user_favorite_index_path(@user) do %>
+            <%= @user.favorites.count %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class = "follow">
+        <div class="follows">
+          <p>フォロー</p>
+          <%= link_to follows_user_user_path(@user) do %>
+            <h6><%= @user.followers.count %></h6>
+          <% end %>
+        </div>
+        <div class="followers">
+           <p>フォロワー</p>
+          <%= link_to followers_user_user_path(@user) do %>
+            <h6><%= @user.followereds.count %></h6>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

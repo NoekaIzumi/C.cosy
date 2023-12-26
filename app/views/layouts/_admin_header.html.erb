@@ -1,0 +1,21 @@
+<header>
+
+  <div class = "title">
+    管理者ページ
+  </div>
+
+  <div class = "logo">
+            <%= link_to admin_path do %>
+              <%= image_tag 'logo.png', size: "200x200" %>
+            <% end %>
+  </div>
+
+  <div class = "header"style="display: inline;">
+   <div class = "button">
+   <%= button_to "Users",  admin_user_index_path , method: :get, data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
+   </div>
+   <div class = "button">
+   <%= button_to "ログアウト",  destroy_admin_session_path,  method: :delete,data: { turbo_frame: "admins" },class: 'btn btn-default btn-outline' %>
+   </div>
+  </div>
+</header>

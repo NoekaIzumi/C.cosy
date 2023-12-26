@@ -1,12 +1,14 @@
 class HomeController < ApplicationController
   def top
+    
   end
 
   def about
+    @current_user = current_user
   end
 
   def search
-
+  
    tag_id = params[:tag_id]
     if tag_id.present?
       @posts = Tag.find(params[:tag_id]).posts

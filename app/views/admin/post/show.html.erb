@@ -1,1 +1,79 @@
-投稿管理画面
+
+<%= stylesheet_link_tag 'admin' %>
+
+<%= render partial: "layouts/admin_header" %>
+<style>
+
+ .post_title{
+   text-align: left;
+ }
+
+ .container{
+   display:flex;
+   flex-direction: column;
+   padding-left:50px;
+ }
+
+ .favorite_button{
+   text-align: left;
+   margin-left: -30px;
+ }
+
+</style>
+
+<main>
+<div class = "container">
+
+<div class = "post_title">
+<%= @post.restaurant_name %> の詳細
+</div>
+
+<div class = "user" >
+  <%= link_to admin_user_path(@post.user) do %>
+    <%= image_tag @post.user.image,size: "50x50" %>
+    <%= @post.user.name %>(投稿者)
+  <% end %>
+</div>
+
+<div class = "image">
+  <%= image_tag @post.image,size: "200x200" %>
+</div>
+
+<div class = "tags">
+  このお店につけられたタグ：</br>
+  <% @post.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</div>
+
+<div class ="budget">
+  予算：<%= @post.budget %>円
+</div>
+
+<div class ="closest">
+  最寄り駅：<%= @post.closest %>駅
+</div>
+
+<div class ="distance">
+  最寄駅からの距離：<%= @post.distance %>
+</div>
+      <div class="comments ml-5 mt-5">
+        <p>コメント件数：
+        <%= @post.comments.count %></p>
+       <% @comments.each do |comment| %>
+	      <div class="comments-index mb-2">
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
+          <div class="d-flex">
+            <%= comment.comment %>
+            <div class="comment-delete">
+              <%= button_to "削除", admin_post_comment_path(@post, comment), method: :delete, class: "btn-sm btn-danger" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+    </div>
+</main>
+</div>

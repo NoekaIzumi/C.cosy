@@ -1,76 +1,14 @@
 
-  <div class = "title">
-    管理者ページ
+<%= stylesheet_link_tag 'admin' %>
+
+<%= render partial: "layouts/admin_header" %>
+
+<main>
+  <div class = "content">
+    <div class = "title">
+    管理者トップページ（投稿一覧新着順）
+    </div></br>
+    <%= render partial: "layouts/admin/post", collection: @posts %>
   </div>
-
-  <div class = "logo">
-            <%= link_to admin_path do %>
-              <%= image_tag 'logo.png', size: "200x200" %>
-            <% end %>
-  </div>
-
-  <div class = "header"style="display: inline;">
-   <div class = "button">
-   <%= button_to "Users",  admin_user_index_path , method: :get, data: { turbo_frame: "users" },class: 'btn btn-default btn-outline' %>
-   </div>
-   <div class = "button">
-   <%= button_to "ログアウト",  destroy_admin_session_path,  method: :delete,data: { turbo_frame: "admins" },class: 'btn btn-default btn-outline' %>
-   </div>
-  </div>
-
-</header>
-
-<style>
-
-  div {
-  	 display: inline-block;
-  }
-
-  .logo {
-  	margin-right: 150px;
-  	margin-left:  250px;
-  }
-
-
-  .header {
-  padding-right : 20px;
-  margin-top: 20px;
-  margin-bottom: 60px;
-  width: 450px;
-  }
-
-  form.button_to {
-    width:100px;
-    margin:20px;
-  }
-
-  .btn-outline {
-  background-color: transparent;
-  color: #000000; /* ボタンのテキストカラー */
-  border-color: transparent;
-
-  .table {
-    margin-top:30px;
-  }
-}
-
-</style>
-
-</br>
-
-<div class = "container">
-<div class = "title">
-管理者トップページ（投稿一覧新着順）
-</div></br>
-
-<div class="table">
- <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.restaurant_name %></td>
-    <td><%= post.budget %></td>
-    <td><%= post.closest %></td>
-    <td><%= post.distance %></td>
-  </tr>
- <% end %>
-</div>
+</main>
 </div>

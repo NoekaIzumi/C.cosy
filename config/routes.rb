@@ -4,10 +4,12 @@ Rails.application.routes.draw do
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
      resources :follow,only: [:index] # フォロー一覧
      resources :followed,only: [:index] # フォロワー一覧
+     resources :comments, only: [:index]#コメント一覧
     end
     resources :post, only: [:show, #投稿管理画面
       ] do
-     resources :favorite,only: [:index] # お気に入り一覧
+      resources :comments, only: [:index,:destroy]#コメント管理
+      resources :favorite,only: [:index] # お気に入り一覧
     end
 
 
@@ -19,9 +21,13 @@ Rails.application.routes.draw do
     end
     resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
+      member do
+      get :follows, :followers
+    end
       resources :follow,only: [:create,:destroy,:index]
       resources :followed,only: [:create,:destroy,:index]
       resources :favorite,only: [:index]
+      resources :relationship, only: [:create, :destroy]
     end
   end
 

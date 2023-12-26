@@ -1,19 +1,29 @@
 class User::UserController < ApplicationController
   def show
+    @current_user = current_user
+    @user = User.find(params[:id])
   end
 
   def edit
-   @user = User.find(current_user.id)
+    @user = User.find(current_user.id)
+    @following_users = @user.following_users
+    @follower_users = @user.follower_users
   end
 
   def favorite
   end
 
-  def follow
-  end
+ # フォロー一覧
+def follows
+  user = User.find(params[:id])
+  @users = user.following_users
+end
 
-  def follower
-  end
+# フォロワー一覧
+def followers
+  user = User.find(params[:id])
+  @user = user.follower_users
+end
 
   def update
     @user = current_user

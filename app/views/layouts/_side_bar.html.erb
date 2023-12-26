@@ -1,35 +1,71 @@
 <% if !["home", "sessions", "registrations"].include?(controller_name) || !["top", "new"].include?(action_name) %>
-<div class = "flex-container">
-  <side_bar>
-    <div class="user_info">
+  <% if !request.path.start_with?("/admin") %>
+    <div class = "flex-container">
       <% if user_signed_in? %>
-        <div class = "user_profile">
-          <%= link_to edit_user_user_path(@user) do %>
-            <%= image_tag @user.image,size: "100x100" %>
+        <side_bar>
+          <div class="user_info">
+              <div class = "user_profile">
+                <%= link_to edit_user_user_path(@current_user) do %>
+                  <% if @current_user.image.present? %>
+                    <%= image_tag @current_user.image,size: "100x100" %>
+                  <% else %>
+                    <%= image_tag 'guest.png'%>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class = "user_name">
+                <%= @current_user.name %>
+              </div>
+              <div class="email">
+                <p>メールアドレス</p>
+                <%= @current_user.email %>
+              </div>
+              <p>フォロー</p>
+              <p>フォロワー</p>
+              <div class = "favorited">
+                <p>いいね！</p>
+              </div>
+              <div class = "favorite_index">
+                <p>お気に入り</p>
+                <%= link_to user_user_favorite_index_path(@current_user) do %>
+                  <%= @current_user.favorites.count %>
+                <% end %>
+              </div>
+
+
+              <th>Follows</th>
+      <td>
+        <%= link_to follows_user_user_path(@current_user) do %>
+          <h6><%= @current_user.followers.count %></h6>
+        <% end %>
+      </td>
+      </tr>
+      <tr>
+        <th>Followers</th>
+        <td>
+          <%= link_to followers_user_user_path(@current_user) do %>
+            <h6><%= @current_user.followereds.count %></h6>
           <% end %>
-        </div>
-        <div class = "user_name">
-          <%= @user.name %>
-        </div>
-        <div class="email">
-          <p>メールアドレス</p>
-          <%= @user.email %>
-        </div>
-        <p>フォロー</p>
-        <p>フォロワー</p>
-        <div class = "favorited">
-          <p>いいね！</p>
-        </div>
-        <div class = "favorite_index">
-          <p>お気に入り</p>
-          <%= link_to user_user_favorite_index_path(@user) do %>
-            <%= @user.favorites.count %>
-          <% end %>
-        </div>
-      <% else %>
-        <p>ゲスト</p>
+        </td>
+      </tr>
+              </div>
+            </side_bar>
+
+
+            <% else %>
+              <side_bar>
+                <div class="user_info">
+                  <div class = "user_profile">
+                    <%= image_tag 'guest.png'%>
+                  </div>
+                  <div class = "user_name">
+                    <p>ゲスト</p>
+                  </div>
+
+                </div>
+            </side_bar>
+
       <% end %>
-      <p>お気に入り</p>
-    </div>
-  </side_bar>
+  <% end %>
 <% end %>
+

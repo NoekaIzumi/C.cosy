@@ -4,6 +4,7 @@ class Admin::UserController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -12,11 +13,17 @@ class Admin::UserController < ApplicationController
   def favorite
   end
 
-  def follow
-  end
+ # フォロー一覧
+def follows
+  user = User.find(params[:id])
+  @users = user.following_users
+end
 
-  def follower
-  end
+# フォロワー一覧
+def followers
+  user = User.find(params[:id])
+  @user = user.follower_users
+end
 
   def suspend
     @user = User.find(params[:id])

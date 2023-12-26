@@ -1,4 +1,6 @@
 class Admin::PostController < ApplicationController
+  
+before_action :authenticate_admin!
 
   def index#投稿全体の一覧
   @posts = Post.all
@@ -9,7 +11,9 @@ class Admin::PostController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
+    @comments= Comment.where(post_id: @post.id)
+    @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
 
   def comments #各ユーザーのコメント一覧
