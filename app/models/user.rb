@@ -24,4 +24,20 @@ has_many :follower_users, through: :followereds, source: :follower
     post.favorites.exists?(user_id: self.id)
   end
 
+
+  #　フォローしたときの処理
+def follow(user_id)
+  followers.create(followered_id: user_id)
+end
+
+#　フォローを外すときの処理
+def unfollow(user_id)
+  followers.find_by(followered_id: user_id).destroy
+end
+
+#フォローしていればtrueを返す
+def following?(user)
+  following_users.include?(user)
+end
+
 end

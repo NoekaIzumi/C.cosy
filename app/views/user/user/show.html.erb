@@ -54,9 +54,9 @@
                 <td>
                 <% if current_user != @user %>
                     <% if current_user.following_users.include?(@user) %>
-                      <%= link_to "フォロー外す", user_user_relationship_index_path(@user), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "フォロー外す", user_user_relationship_path(@user), method: :delete, class: "btn btn-danger" %>
                     <% else %>
-                      <%= button_to "フォローする",user_user_relationship_path(@user), method: :post, class:"btn btn-success" %>
+                      <%= button_to "フォローする",user_user_relationship_index_path(@user), method: :post, class:"btn btn-success" %>
                     <% end %>
                   <% end %>
                 </td>

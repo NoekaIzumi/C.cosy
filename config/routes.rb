@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :favorite,only: [:create,:destroy]
       resources :comments, only:[:create, :destroy]#コメント機能
     end
-    resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
+    #resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
       member do
       get :follows, :followers

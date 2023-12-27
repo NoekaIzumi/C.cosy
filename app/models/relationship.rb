@@ -4,6 +4,7 @@ class Relationship < ApplicationRecord
 
   #　フォローしたときの処理
 def follow(user_id)
+  raise
   followers.create(followered_id: user_id)
 end
 

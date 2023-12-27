@@ -16,10 +16,6 @@ before_action :authenticate_admin!
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
 
-  def comments #各ユーザーのコメント一覧
-
-  end
-
   private
 
   def post_params
