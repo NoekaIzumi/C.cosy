@@ -16,6 +16,13 @@
    margin-left: -30px;
  }
 
+ .tags span {
+  display: inline-block;
+  margin-right: 5px;
+  background-color: #99FFCC; /* 好みの色に変更してください */
+}
+
+
 </style>
 
 <main>
@@ -26,9 +33,14 @@
 </div>
 
 <div class = "user" >
-  <%= link_to user_user_path(@post.user) do %>
-    <%= image_tag @post.user.image,size: "50x50" %>
-    <%= @post.user.name %>(投稿者)
+  <% if user_signed_in? %>
+    <%= link_to user_user_path(@post.user) do %>
+      <%= image_tag @post.user.image,size: "50x50" %>
+      <%= @post.user.name %>(投稿者)
+    <% end %>
+  <% else %>
+      <%= image_tag @post.user.image,size: "50x50" %>
+      <%= @post.user.name %>(投稿者)
   <% end %>
 </div>
 
@@ -39,7 +51,7 @@
 <div class = "tags">
   このお店につけられたタグ：</br>
   <% @post.tags.each do |tag| %>
-    <%= tag.name %>
+    <span><%= tag.name %></span>
   <% end %>
 </div>
 

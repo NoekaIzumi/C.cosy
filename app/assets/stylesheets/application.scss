@@ -115,4 +115,8 @@ main{
     text-align: center;
   }
 
-
+.tag-list span {
+  display: inline-block;
+  margin-right: 5px;
+  background-color: #99FFCC; /* 好みの色に変更してください */
+}

@@ -1,6 +1,33 @@
+<style>
 
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-<%= link_to ">>ユーザーとしてログイン", new_user_session_path %></br>
-<%= link_to ">>ゲストとしてログイン", posts_path %>
+.log_in_button{
+ text-align: center;
+}
+
+form.button_to {
+  width: 200px;
+}
+</style>
+
+<main>
+  <div class = "logo">
+      <%= image_tag 'logo2.png', size: "240x80" %>
+      <p>あなたの"お気に入り"がきっと見つかる</p>
+  </div>
+  <div class = "top">
+    <p>ユーザー登録してお気に入りのお店の情報を友達とシェアしよう！</p>
+  </div>
+
+  <div class = "log_in">
+    <div class = "log_in_button">
+      <%= button_to "ユーザーとしてログイン", new_user_session_path %></br>
+      <%= button_to "ゲストとしてログイン", posts_path,  method: :get %>
+    </div>
+  </div>
+</main>
