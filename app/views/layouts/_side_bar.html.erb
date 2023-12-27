@@ -20,16 +20,15 @@
                 <p>メールアドレス</p>
                 <%= @current_user.email %>
               </div>
-              <p>フォロー</p>
-              <p>フォロワー</p>
               <div class = "favorite">
                 <div class="favorited">
                   <p>いいね！</p>
+                    <%= @current_user.posts.inject(0) { |sum, post| sum + post.favorites.count } %>
                 </div>
                 <div class="favorite_index">
                   <p>お気に入り</p>
-                  <%= link_to user_user_favorite_index_path(@user) do %>
-                    <%= @user.favorites.count %>
+                  <%= link_to user_user_favorite_index_path(@current_user) do %>
+                    <%= @current_user.favorites.count %>
                   <% end %>
                 </div>
               </div>
@@ -37,14 +36,14 @@
               <div class = "follow">
                 <div class="follows">
                   <p>フォロー</p>
-                    <%= link_to follows_user_user_path(@user) do %>
-                      <h6><%= @user.followereds.count %></h6>
+                    <%= link_to follows_user_user_path(@current_user) do %>
+                      <h6><%= @current_user.followers.count %></h6>
                     <% end %>
                 </div>
                 <div class="followers">
                   <p>フォロワー</p>
-                    <%= link_to followers_user_user_path(@user) do %>
-                      <h6><%= @user.followers.count %></h6>
+                    <%= link_to followers_user_user_path(@current_user) do %>
+                      <h6><%= @current_user.followereds.count %></h6>
                     <% end %>
                 </div>
               </div>

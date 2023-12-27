@@ -22,6 +22,15 @@
   background-color: #99FFCC; /* 好みの色に変更してください */
 }
 
+.favorite_button {
+  display: flex;
+  margin-right: 5px;
+}
+
+.favorite_button form.button_to{
+  width: 150px;
+}
+
 
 </style>
 
@@ -66,18 +75,31 @@
 <div class ="distance">
   最寄駅からの距離：<%= @post.distance %>
 </div>
+<% if @post.user == current_user %>
+  <div clas = "edit">
+    <%= button_to "投稿を編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
+  </div>
+  <% if @post.draft? %>
+    <div clss="publish_button">
+      <%= button_to "公開する", publish_user_post_path(@post), method: :patch, data: { turbo_frame: "posts" }, class: 'btn btn-default' %>
+    </div>
+  <% end %>
+<% end %>
 
 <div class = "favorite_button">
 <% if user_signed_in? %>
-  <% if @post.favorite?(current_user) %>
-  <%= button_to user_post_favorite_path(@post), method: :delete ,class: 'btn btn-default btn-outline' do %>
-  <p><span>❤︎</span>お気に入り解除</p>
-  <% end %>
+  <% if @post.favorited_by?(current_user) %>
+    <%= button_to user_post_favorite_path(@post), method: :delete ,class: 'btn btn-default btn-outline' do %>
+      <p><span>❤︎</span>お気に入り解除</p>
+    <% end %>
   <% else %>
   <%= button_to user_post_favorite_index_path(@post), method: :post, remote: true,class: 'btn btn-default btn-outline' do %>
   <p><span>♡︎</span>お気に入り</p>
   <% end %>
- <% end %>
+<% end %>
+  <div class = "favorites-count">
+    <p>いいね! <%= @post.favorites.count %> </p>
+  </div>
 </div>
       <div class="comments ml-5 mt-5">
         <%= form_with(model:[@post, @comment], url: user_post_comments_path(@post), local: true) do |f| %>
@@ -97,10 +119,7 @@
               <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, class: "btn-sm btn-danger" %>
             </div>
           </div>
-        </div>
-            <p><!--コメントしたuser<--></p>
-            <!--コメント欄<-->
-            <p><!--コメントした日時<--></p>
+      </div>
           <% end %>
         <% end %>
         <%= paginate @comments %>

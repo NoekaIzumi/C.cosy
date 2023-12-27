@@ -22,10 +22,9 @@
               <div class = "user_name">
                 <%= @user.name %>
               </div>
-              <p>フォロー</p>
-              <p>フォロワー</p>
               <div class = "favorited">
                 <p>いいね！</p>
+                 <%= @user.posts.inject(0) { |sum, post| sum + post.favorites.count } %>
               </div>
               <div class = "favorite_index">
                 <p>お気に入り</p>
@@ -54,7 +53,7 @@
                 <td>
                 <% if current_user != @user %>
                     <% if current_user.following_users.include?(@user) %>
-                      <%= link_to "フォロー外す", user_user_relationship_path(@user), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "フォローを外す", user_user_relationship_path(@user), method: :delete, class: "btn btn-danger" %>
                     <% else %>
                       <%= button_to "フォローする",user_user_relationship_index_path(@user), method: :post, class:"btn btn-success" %>
                     <% end %>

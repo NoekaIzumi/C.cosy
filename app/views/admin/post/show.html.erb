@@ -14,11 +14,6 @@
    padding-left:50px;
  }
 
- .favorite_button{
-   text-align: left;
-   margin-left: -30px;
- }
-
  .tags span {
   display: inline-block;
   margin-right: 5px;
@@ -62,6 +57,10 @@
 
 <div class ="distance">
   最寄駅からの距離：<%= @post.distance %>
+</div>
+
+<div class = "favorites-count">
+    <p>いいね! <%= @post.favorites.count %> </p>
 </div>
       <div class="comments ml-5 mt-5">
         <p>コメント件数：

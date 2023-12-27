@@ -12,10 +12,10 @@ class User::FavoriteController < ApplicationController
   end
 
   def index
-    @user = current_user
+    @user = User.find(params[:user_id])
+    @current_user = current_user
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
-
   end
 
 end

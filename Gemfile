@@ -61,3 +61,4 @@ gem "devise"
 gem "byebug"
 gem "activestorage"
 gem 'kaminari'
+gem 'enum_help'

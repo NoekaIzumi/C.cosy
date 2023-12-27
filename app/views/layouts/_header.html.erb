@@ -1,12 +1,6 @@
 <% if controller_name != "home" || action_name != "top" %>
   <% if !request.path.start_with?("/admin") %>
   <header>
-    <div class = "icon_search">
-     <%= link_to search_path do %>
-      <i class="fas fa-search"></i>
-     <% end %>
-    </div>
-
     <div class = "logo">
       <%= link_to posts_path do %>
         <%= image_tag 'logo.png', size: "150x150" %>
@@ -26,6 +20,13 @@
             <%= image_tag 'pen.jpeg', size: "30x30" %>
           <% end %>
         </div>
+        <div class = "icon_draft">
+          <%= link_to draft_user_post_index_path do %>
+            <%= image_tag 'draft.png', size: "30x30" %>
+          <% end %>
+        </div>
+
+
       <% else %>
         <div class = "about">
           <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>

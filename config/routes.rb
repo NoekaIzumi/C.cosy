@@ -16,8 +16,14 @@ Rails.application.routes.draw do
   end
   namespace :user do
     resources :post do
-      resources :favorite,only: [:create,:destroy]
+      resources :favorite,only: [:create,:destroy, :index]
       resources :comments, only:[:create, :destroy]#コメント機能
+      member do
+        patch 'publish'#下書きを公開する
+      end
+      collection do
+        get 'draft'#下書き機能
+      end
     end
     #resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
