@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
      resources :follow,only: [:index] # フォロー一覧
      resources :followed,only: [:index] # フォロワー一覧
-     resources :comments, only: [:index]#コメント一覧
+     resources :comments, only: [:index, :destroy]#コメント一覧/削除
     end
     resources :post, only: [:show, #投稿管理画面
       ] do

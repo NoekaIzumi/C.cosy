@@ -48,3 +48,10 @@
   .button {
     text-align: center;
   }
+  
+  
+.tag-list span {
+  white-space: nowrap; /* テキストを折り返さないようにする */
+  overflow: hidden; /* 溢れたテキストを非表示にする */
+  text-overflow: ellipsis; /* 溢れたテキストを省略記号で表示する */
+}

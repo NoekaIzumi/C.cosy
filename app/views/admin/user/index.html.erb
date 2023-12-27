@@ -71,6 +71,17 @@
     <table class="table">
       <% @users.each do |user| %>
       <tr>
+        <div class = "user" >
+          <td>
+            <%= link_to admin_user_path(user) do %>
+                  <% if user.image.present? %>
+                    <%= image_tag user.image,size: "100x100" %>
+                  <% else %>
+                    <%= image_tag 'guest.png'%>
+                  <% end %>
+            <% end %>
+          </td>
+        </div>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>

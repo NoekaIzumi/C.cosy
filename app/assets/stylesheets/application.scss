@@ -115,6 +115,11 @@ main{
     text-align: center;
   }
 
+
+.tag-list {
+  white-space: nowrap;
+}
+
 .tag-list span {
   display: inline-block;
   margin-right: 5px;
