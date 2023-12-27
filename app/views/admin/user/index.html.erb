@@ -60,6 +60,10 @@
   margin-bottom: 30px;
 }
 
+.suspend form.button_to {
+  color: #F00;
+}
+
 </style>
 
 <div class="container">
@@ -87,7 +91,14 @@
         <td>
           <%= button_to "投稿一覧",  user_posts_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
           <%= button_to "コメント一覧", user_comments_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "利用停止", suspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+          <% if user.suspended %>
+            <div class = "suspend",style="color: red;">
+              <%= button_to "利用停止中", admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+            </div>
+          <% else %>
+            <%= button_to "利用停止", suspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" },
+            form: { data: { turbo_confirm: 'このユーザーを利用停止にしますか?' }}, class: 'btn btn-default btn-outline' %>
+          <% end %>
         </td>
       </tr>
       <% end %>

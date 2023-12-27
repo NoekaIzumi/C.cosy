@@ -1,10 +1,46 @@
 <style>
-  main {
-    display: flex;
+main {
+   text-align: center;
   }
-  .sub-title {
+
+  .sub_title {
     text-align: center;
   }
+
+  .container {
+  display: flex;
+  justify-content: center; /* container内を中央揃えにする */
+}
+
+  .user_profile{
+    display: flex;
+    gap: 10px;
+  }
+
+  .user_name{
+    margin-bottom: 0px;
+  }
+
+  .user_name,.email{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px;
+    height: 30px;
+  }
+
+  .favorite,.follow {
+    display: flex;
+    margin-left: 110px;
+  }
+
+  .favorited,.favorite_index,.follows,.followers{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 5px;
+  }
+
 </style>
 
 <main>

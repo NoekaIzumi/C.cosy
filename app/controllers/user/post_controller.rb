@@ -60,9 +60,19 @@ class User::PostController < ApplicationController
       end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.is draft?
+      redirect_to draft_user_post_index_path(params[:user_id])
+    else
+      redirect_to user_post_path(params[:post_id])
+    end
+
+  end
+
   def draft
     @posts = current_user.posts.draft.page(params[:page]).reverse_order
-    @draft_posts = @current_user.posts.where(status: :draft)
+    @draft_posts = current_user.posts.where(status: :draft)
   end
 
   def publish

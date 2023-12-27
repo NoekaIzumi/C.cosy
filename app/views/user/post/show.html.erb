@@ -11,20 +11,25 @@
    padding-left:50px;
  }
 
- .favorite_button{
-   text-align: left;
-   margin-left: -30px;
- }
-
  .tags span {
   display: inline-block;
   margin-right: 5px;
   background-color: #99FFCC; /* 好みの色に変更してください */
 }
 
+.post_button {
+  display: flex;
+}
+
+.post-delete {
+  margin-left: 10px;
+}
+
 .favorite_button {
   display: flex;
-  margin-right: 5px;
+  align-items: center;
+  width: 400px;
+  margin-left : -10px;
 }
 
 .favorite_button form.button_to{
@@ -54,7 +59,11 @@
 </div>
 
 <div class = "image">
-  <%= image_tag @post.image,size: "200x200" %>
+  <% if @post.image.present? %>
+    <%= image_tag @post.image,size: "200x200" %>
+  <% else %>
+    <%= image_tag 'post_no_image.png',size: "200x200" %>
+  <% end %>
 </div>
 
 <div class = "tags">
@@ -76,14 +85,14 @@
   最寄駅からの距離：<%= @post.distance %>
 </div>
 <% if @post.user == current_user %>
-  <div clas = "edit">
-    <%= button_to "投稿を編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
-  </div>
-  <% if @post.draft? %>
-    <div clss="publish_button">
-      <%= button_to "公開する", publish_user_post_path(@post), method: :patch, data: { turbo_frame: "posts" }, class: 'btn btn-default' %>
+<div class = "post_button">
+    <div clas = "edit">
+      <%= button_to "編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
     </div>
-  <% end %>
+    <div class="post-delete">
+                  <%= button_to "削除", user_post_destroy_path(@post), method: :delete,form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-sm btn-danger" %>
+    </div>
+</div>
 <% end %>
 
 <div class = "favorite_button">
@@ -116,7 +125,7 @@
             <%= comment.comment %>
             <% if comment.user == current_user %>
             <div class="comment-delete">
-              <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, class: "btn-sm btn-danger" %>
+              <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }},class: "btn-sm btn-danger" %>
             </div>
           </div>
       </div>

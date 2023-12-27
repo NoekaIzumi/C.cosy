@@ -30,6 +30,12 @@
               <% post.tags.each do |tag| %>
                 <span><%= tag.name %></span>
               <% end %>
+              <div class="post-delete">
+                <%= button_to "削除", user_post_destroy_path(post), method: :delete,form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-sm btn-danger" %>
+              </div>
+               <div clas = "edit">
+                <%= button_to "投稿を編集する" ,edit_user_post_path(post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
+              </div>
           </div>
         </div>
       </div>

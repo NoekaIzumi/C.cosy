@@ -2,35 +2,37 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :user do
       patch 'suspend', on: :member # ユーザーを利用停止にするルート
-     resources :follow,only: [:index] # フォロー一覧
-     resources :followed,only: [:index] # フォロワー一覧
      resources :comments, only: [:index, :destroy]#コメント一覧/削除
+     resources :favorite,only: [:index]
+     member do
+      get :follows, :followers# フォロー一覧,# フォロワー一覧
+     end
     end
     resources :post, only: [:show, #投稿管理画面
       ] do
       resources :comments, only: [:index,:destroy]#コメント管理
       resources :favorite,only: [:index] # お気に入り一覧
     end
-
-
   end
+
   namespace :user do
     resources :post do
-      resources :favorite,only: [:create,:destroy, :index]
-      resources :comments, only:[:create, :destroy]#コメント機能
-      member do
-        patch 'publish'#下書きを公開する
-      end
-      collection do
-        get 'draft'#下書き機能
-      end
+      delete 'destroy'
+        resources :favorite,only: [:create,:destroy, :index]
+        resources :comments, only:[:create, :destroy]#コメント機能
+        member do
+          patch 'publish'#下書きを公開する
+        end
+        collection do
+          get 'draft'#下書き機能
+        end
     end
     #resources :relationship,only: [:follow,:unfollow,:followed,:unfollowed]
     resources :user, only: [:edit, :show,:favorite,:follow,:follower,:update] do
       member do
       get :follows, :followers
     end
-      resources :follow,only: [:create,:destroy,:index]
+      resources :follow,only: [:create,:destroy,:index]#フォロ
       resources :followed,only: [:create,:destroy,:index]
       resources :favorite,only: [:index]
       resources :relationship, only: [:create, :destroy]

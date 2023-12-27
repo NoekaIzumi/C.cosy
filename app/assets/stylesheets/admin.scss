@@ -55,3 +55,11 @@
   overflow: hidden; /* 溢れたテキストを非表示にする */
   text-overflow: ellipsis; /* 溢れたテキストを省略記号で表示する */
 }
+
+.message {
+  text-align: center;
+}
+
+.suspend {
+  color: red;
+}

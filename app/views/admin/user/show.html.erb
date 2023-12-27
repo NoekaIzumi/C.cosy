@@ -5,8 +5,7 @@
 <style>
 
   main {
-    width: 350px;
-    margin-left:400px;
+   text-align: center;
   }
 
   .sub_title {
@@ -17,10 +16,6 @@
   display: flex;
   justify-content: center; /* container内を中央揃えにする */
 }
-
-  .user_info {
-    width: 100%;
-  }
 
   .user_profile{
     display: flex;
@@ -44,10 +39,11 @@
     margin-left: 110px;
   }
 
-  .favorite_index,.follows,.followers{
+  .favorited,.favorite_index,.follows,.followers{
     display:flex;
     align-items: center;
     gap: 10px;
+    margin-left: 5px;
   }
 
 </style>
@@ -79,10 +75,11 @@
       <div class = "favorite">
         <div class="favorited">
           <p>いいね！</p>
+          <%= @user.posts.inject(0) { |sum, post| sum + post.favorites.count } %>
         </div>
         <div class="favorite_index">
           <p>お気に入り</p>
-          <%= link_to user_user_favorite_index_path(@user) do %>
+          <%= link_to admin_user_favorite_index_path(@user) do %>
             <%= @user.favorites.count %>
           <% end %>
         </div>
@@ -91,13 +88,13 @@
       <div class = "follow">
         <div class="follows">
           <p>フォロー</p>
-          <%= link_to follows_user_user_path(@user) do %>
+          <%= link_to follows_admin_user_path(@user) do %>
             <h6><%= @user.followers.count %></h6>
           <% end %>
         </div>
         <div class="followers">
            <p>フォロワー</p>
-          <%= link_to followers_user_user_path(@user) do %>
+          <%= link_to followers_admin_user_path(@user) do %>
             <h6><%= @user.followereds.count %></h6>
           <% end %>
         </div>

@@ -3,8 +3,8 @@
     <div class = "flex-container">
       <% if user_signed_in? %>
         <side_bar>
-          <div class="user_info">
-              <div class = "user_profile">
+          <div class="current_user_info">
+              <div class = "current_user_profile">
                 <%= link_to edit_user_user_path(@current_user) do %>
                   <% if @current_user.image.present? %>
                     <%= image_tag @current_user.image,size: "100x100" %>
@@ -13,19 +13,19 @@
                   <% end %>
                 <% end %>
               </div>
-              <div class = "user_name">
+              <div class = "current_user_name">
                 <%= @current_user.name %>
               </div>
-              <div class="email">
+              <div class="current_user_email">
                 <p>メールアドレス</p>
                 <%= @current_user.email %>
               </div>
-              <div class = "favorite">
-                <div class="favorited">
+              <div class = "current_user_favorite">
+                <div class="current_user_favorited">
                   <p>いいね！</p>
                     <%= @current_user.posts.inject(0) { |sum, post| sum + post.favorites.count } %>
                 </div>
-                <div class="favorite_index">
+                <div class="current_user_favorite_index">
                   <p>お気に入り</p>
                   <%= link_to user_user_favorite_index_path(@current_user) do %>
                     <%= @current_user.favorites.count %>
@@ -33,14 +33,14 @@
                 </div>
               </div>
 
-              <div class = "follow">
-                <div class="follows">
+              <div class = "current_user_follow">
+                <div class="current_user_follows">
                   <p>フォロー</p>
                     <%= link_to follows_user_user_path(@current_user) do %>
                       <h6><%= @current_user.followers.count %></h6>
                     <% end %>
                 </div>
-                <div class="followers">
+                <div class="current_user_followers">
                   <p>フォロワー</p>
                     <%= link_to followers_user_user_path(@current_user) do %>
                       <h6><%= @current_user.followereds.count %></h6>
@@ -53,11 +53,11 @@
 
             <% else %>
               <side_bar>
-                <div class="user_info">
-                  <div class = "user_profile">
+                <div class="current_user_info">
+                  <div class = "current_user_profile">
                     <%= image_tag 'guest.png'%>
                   </div>
-                  <div class = "user_name">
+                  <div class = "current_user_name">
                     <p>ゲスト</p>
                   </div>
 

@@ -7,7 +7,13 @@
     <div class = "title">
      <%= User.find(params[:id]).name %>の投稿一覧
     </div></br>
-    <%= render partial: "layouts/admin/post", collection: @posts %>
+    <% if @posts.exists? %>
+      <%= render partial: "layouts/admin/post", collection: @posts %>
+    <% else %>
+      <div class = "message">
+        <p>投稿がありません</p>
+      </div>
+    <% end %>
   </div>
 </main>
 </div>
