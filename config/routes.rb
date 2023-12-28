@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   }
 
   get 'posts',to:  'user/post#index' , as: 'posts'#ユーザートップページ
-
+  get 'user/:id/posts', to: 'user/post#index_follows', as: 'follows_user_posts'#フォローしたユーザーの投稿一覧
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

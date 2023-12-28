@@ -13,24 +13,33 @@ class User::PostController < ApplicationController
     @draft_posts = @current_user.posts.where(status: :draft) # 下書き状態の投稿を取得
   end
 
+  def index_follows#フォローしているユーザーの投稿一覧
+    @current_user = current_user
+    @posts = Post.where(user_id: params[:id])
+    # 下書き状態の投稿を表示しないようにフィルタリング
+    @posts = @posts.where.not(status: :draft)
+  end
+
   def new
     @post=Post.new
     @user = User.find(current_user.id)
   end
 
   def create
-  @post = current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
+    tag_ids = params[:post][:tag_ids] ||= []
+    @post.tag_ids = tag_ids
 
-
-
-  tag_ids = params[:post][:tag_ids] ||= []
-  @post.tag_ids = tag_ids
-   if @post.save
-    redirect_to posts_path
-   else
-    puts @post.errors.full_messages
-     render :new
-   end
+    if @post.save
+      if @post.published?
+        redirect_to posts_path
+      else
+        redirect_to user_post_path(@post)
+      end
+    else
+      puts @post.errors.full_messages
+       render :new
+    end
   end
 
   def show

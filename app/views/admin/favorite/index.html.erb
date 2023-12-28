@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag 'admin' %>
+<%= render partial: "layouts/admin_header" %>
+
+<main>
+    <div class="content">
+        <div class = "title">
+            <p><%= @user.name %>のお気に入り一覧</p>
+        </div>
+<%= render partial: "layouts/admin/post", collection: @favorite_posts %>
+    </div>
+</main>
+</div>
