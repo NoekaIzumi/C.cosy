@@ -42,97 +42,99 @@
 <main>
 <div class = "container">
 
-<div class = "post_title">
-<%= @post.restaurant_name %> の詳細
-</div>
+      <div class = "post_title">
+      <%= @post.restaurant_name %> の詳細
+      </div>
 
-<div class = "user" >
-  <% if user_signed_in? %>
-    <%= link_to user_user_path(@post.user) do %>
-      <%= image_tag @post.user.image,size: "50x50" %>
-      <%= @post.user.name %>(投稿者)
-    <% end %>
-  <% else %>
-      <%= image_tag @post.user.image,size: "50x50" %>
-      <%= @post.user.name %>(投稿者)
-  <% end %>
-</div>
-
-<div class = "image">
-  <% if @post.image.present? %>
-    <%= image_tag @post.image,size: "200x200" %>
-  <% else %>
-    <%= image_tag 'post_no_image.png',size: "200x200" %>
-  <% end %>
-</div>
-
-<div class = "tags">
-  このお店につけられたタグ：</br>
-  <% @post.tags.each do |tag| %>
-    <span><%= tag.name %></span>
-  <% end %>
-</div>
-
-<div class ="budget">
-  予算：<%= @post.budget %>円
-</div>
-
-<div class ="closest">
-  最寄り駅：<%= @post.closest %>
-</div>
-
-<div class ="distance">
-  最寄駅からの距離：<%= @post.distance %>
-</div>
-<% if @post.user == current_user %>
-<div class = "post_button">
-    <div clas = "edit">
-      <%= button_to "編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
-    </div>
-    <div class="post-delete">
-                  <%= button_to "削除", user_post_destroy_path(@post), method: :delete,form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-sm btn-danger" %>
-    </div>
-</div>
-<% end %>
-
-<div class = "favorite_button">
-<% if user_signed_in? %>
-  <% if @post.favorited_by?(current_user) %>
-    <%= button_to user_post_favorite_path(@post), method: :delete ,class: 'btn btn-default btn-outline' do %>
-      <p><span>❤︎</span>お気に入り解除</p>
-    <% end %>
-  <% else %>
-  <%= button_to user_post_favorite_index_path(@post), method: :post, remote: true,class: 'btn btn-default btn-outline' do %>
-  <p><span>♡︎</span>お気に入り</p>
-  <% end %>
-<% end %>
-  <div class = "favorites-count">
-    <p>いいね! <%= @post.favorites.count %> </p>
-  </div>
-</div>
-      <div class="comments ml-5 mt-5">
-        <%= form_with(model:[@post, @comment], url: user_post_comments_path(@post), local: true) do |f| %>
-        <%= f.text_area :comment, :size=>"60x3",placeholder: "コメントする" %>
-        <%= f.submit "送信する", class: "btn btn-success mb-4" %>
+      <div class = "user" >
+        <% if user_signed_in? %>
+          <%= link_to user_user_path(@post.user) do %>
+            <%= image_tag @post.user.image,size: "50x50" %>
+            <%= @post.user.name %>(投稿者)
+          <% end %>
+        <% else %>
+            <%= image_tag @post.user.image,size: "50x50" %>
+            <%= @post.user.name %>(投稿者)
         <% end %>
-        <p>コメント件数：
-        <%= @post.comments.count %></p>
-       <% @comments.each do |comment| %>
-	  <div class="comments-index mb-2">
-          <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
-          <div class="d-flex">
-            <%= comment.comment %>
-            <% if comment.user == current_user %>
-            <div class="comment-delete">
-              <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }},class: "btn-sm btn-danger" %>
-            </div>
+      </div>
+
+      <div class = "image">
+        <% if @post.image.present? %>
+          <%= image_tag @post.image,size: "200x200" %>
+        <% else %>
+          <%= image_tag 'post_no_image.png',size: "200x200" %>
+        <% end %>
+      </div>
+
+      <div class = "tags">
+        このお店につけられたタグ：</br>
+        <% @post.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+        <% end %>
+      </div>
+
+      <div class ="budget">
+        予算：<%= @post.budget %>円
+      </div>
+
+      <div class ="closest">
+        最寄り駅：<%= @post.closest %>
+      </div>
+
+      <div class ="distance">
+        最寄駅からの距離：<%= @post.distance %>
+      </div>
+      <% if @post.user == current_user %>
+      <div class = "post_button">
+          <div clas = "edit">
+            <%= button_to "編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
+          </div>
+          <div class="post-delete">
+                        <%= button_to "削除", user_post_destroy_path(@post), method: :delete,form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-sm btn-danger" %>
           </div>
       </div>
+      <% end %>
+
+      <% if @post.published? %>
+        <div class = "favorite_button">
+        <% if user_signed_in? %>
+          <% if @post.favorited_by?(current_user) %>
+            <%= button_to user_post_favorite_path(@post), method: :delete ,class: 'btn btn-default btn-outline' do %>
+              <p><span>❤︎</span>お気に入り解除</p>
+            <% end %>
+          <% else %>
+          <%= button_to user_post_favorite_index_path(@post), method: :post, remote: true,class: 'btn btn-default btn-outline' do %>
+          <p><span>♡︎</span>お気に入り</p>
           <% end %>
         <% end %>
-        <%= paginate @comments %>
-      </div>
+          <div class = "favorites-count">
+            <p>いいね! <%= @post.favorites.count %> </p>
+          </div>
+        </div>
+        <div class="comments ml-5 mt-5">
+                <%= form_with(model:[@post, @comment], url: user_post_comments_path(@post), local: true) do |f| %>
+                <%= f.text_area :comment, :size=>"60x3",placeholder: "コメントする" %>
+                <%= f.submit "送信する", class: "btn btn-success mb-4" %>
+                <% end %>
+                <p>コメント件数：
+                <%= @post.comments.count %></p>
+               <% @comments.each do |comment| %>
+        	  <div class="comments-index mb-2">
+                  <%= comment.user.name %>
+                  <%= comment.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
+                  <div class="d-flex">
+                    <%= comment.comment %>
+                    <% if comment.user == current_user %>
+                    <div class="comment-delete">
+                      <%= button_to "削除", user_post_comment_path(@post, comment), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }},class: "btn-sm btn-danger" %>
+                    </div>
+                  </div>
+              </div>
+                  <% end %>
+                <% end %>
+                <%= paginate @comments %>
+        </div>
+      <% end %>
     </div>
 <% end %>
 </main>

@@ -61,13 +61,13 @@ class User::PostController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.is draft?
+    @post = Post.find(params[:post_id])
+    @post.destroy
+    if @post.draft?
       redirect_to draft_user_post_index_path(params[:user_id])
     else
-      redirect_to user_post_path(params[:post_id])
+      redirect_to posts_path
     end
-
   end
 
   def draft
