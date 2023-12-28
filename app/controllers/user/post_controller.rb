@@ -9,8 +9,9 @@ class User::PostController < ApplicationController
 
     # 下書き状態の投稿を表示しないようにフィルタリング
     @posts = @posts.where.not(status: :draft)
-
-    @draft_posts = @current_user.posts.where(status: :draft) # 下書き状態の投稿を取得
+    if @current_user&.present?
+      @draft_posts = @current_user.posts.where(status: :draft)
+    end
   end
 
   def index_follows#フォローしているユーザーの投稿一覧
@@ -37,8 +38,8 @@ class User::PostController < ApplicationController
         redirect_to user_post_path(@post)
       end
     else
-      puts @post.errors.full_messages
-       render :new
+       flash[:error] = "投稿に失敗しました。必要な項目を入力してください。"
+       render "new"
     end
   end
 

@@ -1,0 +1,43 @@
+ja:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: を入力してください
+      too_long: は%{count}文字以内で入力してください。
+      too_short: は%{count}文字以上で入力してください。
+    activerecord:
+      errors:
+        messages:
+          not_found: は見つかりませんでした。
+          not_saved:
+            one: エラーが発生したため %{resource} は保存されませんでした。
+            other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+  devise:
+    failure:
+      not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+      already_authenticated: すでにログインしています。
+      invalid: "%{authentication_keys}またはパスワードが違います。"
+      unauthenticated: ログインしてください。
+
+    registrations:
+      destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      new:
+        sign_up: ユーザー登録
+        signed_up: ユーザー登録が完了しました。
+
+    sessions:
+      new:
+      log_in: ログイン
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+
+    shared:
+      links:
+        sign_in: ログイン
+        sign_up: アカウント登録
+
+  activerecord:
+    attributes:
+      user:
+        password: パスワード
+        email: メールアドレス

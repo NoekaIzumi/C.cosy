@@ -12,6 +12,14 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning"><%= flash[:alert] %></div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-danger"><%= flash[:error] %></div>
+    <% end %>
+
     <%= render "layouts/header" %>
     <%= render "layouts/side_bar" %>
     <%= yield %>
