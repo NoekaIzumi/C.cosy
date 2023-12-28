@@ -1,0 +1,58 @@
+
+<style>
+
+side_bar {
+  flex: 1;
+  margin-left: 5px;
+}
+
+main{
+  flex: 2;
+}
+</style>
+
+<div class="flex-container">
+  <side_bar>
+    <div class="user_info">
+      <div class="user_profile">
+        <% if @user.image.present? %>
+          <%= image_tag @user.image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'guest.png' %>
+        <% end %>
+      </div>
+      <div class="user_name">
+        <%= @user.name %>
+      </div>
+      <div class="user_email">
+        <p>メールアドレス</p>
+        <%= @user.email %>
+      </div>
+      <div class="user_favorite">
+        <div class="user_favorited">
+          <p>いいね！</p>
+          <%= @user.posts.inject(0) { |sum, post| sum + post.favorites.count } %>
+        </div>
+        <div class="user_favorite_index">
+          <p>お気に入り</p>
+          <%= link_to admin_user_favorite_index_path(@user) do %>
+            <%= @user.favorites.count %>
+          <% end %>
+        </div>
+      </div>
+      <div class="user_follow">
+        <div class="user_follows">
+          <p>フォロー</p>
+          <%= link_to follows_admin_user_path(@user) do %>
+            <h6><%= @user.followers.count %></h6>
+          <% end %>
+        </div>
+        <div class="user_followers">
+          <p>フォロワー</p>
+          <%= link_to followers_admin_user_path(@user) do %>
+            <h6><%= @user.followereds.count %></h6>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </side_bar>

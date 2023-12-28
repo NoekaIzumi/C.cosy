@@ -2,8 +2,14 @@
     <div class="content">
         <div class = "title">
             <p><%= @user.name %>のお気に入り一覧</p>
-        </div>
-<%= render partial: "layouts/post", collection: @favorite_posts %>
+        </div></br>
+            <% if @favorite_posts.present? && @favorite_posts.exists? %>
+                <%= render partial: "layouts/post", collection: @favorite_posts %>
+            <% else %>
+              <div class = "message">
+                <p>お気に入りの投稿はありません</p>
+              </div>
+            <% end %>
     </div>
 </main>
 </div>

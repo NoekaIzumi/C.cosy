@@ -1,12 +1,12 @@
 <main>
   <div class = "content">
     <div class = "title">
-      <p>フォロー中のユーザー</p>
+      <p><%= @user.name %>がフォロー中のユーザー</p>
     </div>
     <% if @users.exists? %>
       <%= render "user/user/index", users: @users %>
     <% else %>
-      <p>ユーザーはいません</p>
+      <p>フォロー中のユーザーはいません</p>
     <% end %>
   </div>
 </main>
