@@ -19,7 +19,6 @@ has_many :follower_users, through: :followereds, source: :follower
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   def favorited?(post)
     post.favorites.exists?(user_id: self.id)
   end

@@ -48,6 +48,11 @@
     margin-left: 5px;
   }
 
+  .suspend {
+  display: flex;
+  justify-content: center;
+}
+
 </style>
 
 
@@ -102,6 +107,15 @@
           <% end %>
         </div>
       </div>
+      <% if @user.suspended %>
+        <div class = "suspend" style="color: red; font-weight: bold;　">
+         <p>利用停止中のユーザーです</p>
+        </div>
+      <% else %>
+        <div class = "suspend" style="color: green; font-weight: bold;">
+         <p>利用中</p>
+        </div>
+      <% end %>
     </div>
   </div>
 </main>
