@@ -62,3 +62,4 @@ gem "byebug"
 gem "activestorage"
 gem 'kaminari'
 gem 'enum_help'
+ gem 'bootstrap', '~> 5.0', '>= 5.0.3'

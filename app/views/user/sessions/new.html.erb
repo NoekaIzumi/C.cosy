@@ -1,4 +1,37 @@
-<h2>ログイン</h2>
+  <style>
+ header{
+   display: none;
+ }
+
+   main {
+      margin-top: auto;
+      display:flex;
+      justify-content: center;
+   }
+
+   .content {
+      text-align: left;
+      margin: 0 auto;
+      width: auto !important;
+      max-width: none !important;
+   }
+ </style>
+
+
+<main>
+   <div class = "content">
+      <div class = "title">
+        <h2>ログイン</h2>
+      </div>
+
+    <% if @user.errors.any? %>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+    <% end %>
+
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -19,8 +52,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン" ,class: "btn btn-primary"%>
   </div>
 <% end %>
 
 <%= render "user/shared/links" %>
+  </div>
+</main>

@@ -3,6 +3,14 @@
     <div class = "title">
       <p>ユーザー情報を編集する</p>
     </div>
+        <% if @user.errors.any? %>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
+
       <%= form_with(model: @user, local: true, url: user_user_path(id: @user.id) ) do |f| %>
         <table>
           <tr>

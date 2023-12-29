@@ -11,7 +11,7 @@ class User::UserController < ApplicationController
   end
 
   def favorited
-    
+
   end
 
  # フォロー一覧
@@ -33,9 +33,11 @@ end
     @user.image.attach(params[:user][:image])
       if @user.update(user_params)
         sign_in :user, @user, bypass: true
+        flash[:notice] = "ユーザー情報が変更されました。"
         redirect_to edit_user_user_path(@user)
       else
-      	render :edit
+        @errors = @user.errors
+      	render :edit,status: :unprocessable_entity
       end
   end
 

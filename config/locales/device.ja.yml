@@ -5,6 +5,7 @@ ja:
       blank: を入力してください
       too_long: は%{count}文字以内で入力してください。
       too_short: は%{count}文字以上で入力してください。
+      not_saved: ""#非表示
     activerecord:
       errors:
         messages:
@@ -22,8 +23,8 @@ ja:
     registrations:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       new:
-        sign_up: ユーザー登録
-        signed_up: ユーザー登録が完了しました。
+      sign_up: ユーザー登録
+      signed_up: ユーザー登録が完了しました。
 
     sessions:
       new:
@@ -46,3 +47,8 @@ ja:
         budget:  予算
         closest:  最寄り駅
         distance: 距離
+
+      user:
+        name:  ユーザー名
+        email: メールアドレス
+        password: パスワード
