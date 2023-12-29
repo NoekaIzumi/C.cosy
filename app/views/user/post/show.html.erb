@@ -48,14 +48,17 @@
 
       <div class = "user" >
         <% if user_signed_in? %>
-          <%= link_to user_user_path(@post.user) do %>
-            <%= image_tag @post.user.image,size: "50x50" %>
-            <%= @post.user.name %>(投稿者)
-          <% end %>
+            <%= link_to user_user_path(@post.user) do %>
+              <% if @post.user.image.present? %>
+                <%= image_tag @post.user.image,size: "50x50" %>
+              <% else %>
+                <%= image_tag 'guest.png',size: "50x50"%>
+              <% end %>
+            <% end %>
         <% else %>
             <%= image_tag @post.user.image,size: "50x50" %>
-            <%= @post.user.name %>(投稿者)
         <% end %>
+            <%= @post.user.name %>(投稿者)
       </div>
 
       <div class = "image">

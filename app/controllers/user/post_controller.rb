@@ -32,13 +32,14 @@ class User::PostController < ApplicationController
     @post.tag_ids = tag_ids
 
     if @post.save
+    flash[:notice] = "投稿しました."
       if @post.published?
         redirect_to posts_path
       else
         redirect_to user_post_path(@post)
       end
     else
-       flash[:error] = "投稿に失敗しました。必要な項目を入力してください。"
+       flash[:alert] = "投稿に失敗しました。必要な項目を入力してください。"
        render "new"
     end
   end

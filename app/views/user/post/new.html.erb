@@ -3,6 +3,18 @@
     <div class = "content">
       <div class = "title">
             <p>新規投稿する</p>
+
+            <% if @post.errors.any? %>
+              <%= @post.errors.count %>件のエラーが発生しました
+              <ul>
+                <% @post.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <%= render 'user/shared/error_messages', resource: @post %>
+
       </div>
         <%= form_with(model: [:user, @post], local: true, url: user_post_index_path, method: :post) do |f| %>
          <table>
