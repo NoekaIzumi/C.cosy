@@ -52,3 +52,6 @@ ja:
         name:  ユーザー名
         email: メールアドレス
         password: パスワード
+
+      admin:
+        email: メールアドレス

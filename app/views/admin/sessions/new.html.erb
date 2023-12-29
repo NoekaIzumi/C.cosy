@@ -1,26 +1,63 @@
-<h2>Log in</h2>
+  <style>
+ header{
+   display: none;
+ }
 
-<%= form_with model: @admin, url: new_admin_session_path,  class: 'admin', local: true do |f| %>
+   main {
+      margin-top: auto;
+      display:flex;
+      justify-content: center;
+   }
+
+   .content {
+      text-align: left;
+      margin: 0 auto;
+      width: auto !important;
+      max-width: none !important;
+   }
+ </style>
+
+
+<main>
+   <div class = "content">
+      <div class = "title">
+        <h2>管理者ログイン</h2>
+      </div>
+
+    <% if @admin.errors.any? %>
+                <ul>
+                  <% @admin.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+    <% end %>
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :パスワード %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :ログイン情報を保持する  %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" ,class: "btn btn-primary"%>
   </div>
 <% end %>
 
 <%= render "admin/shared/links" %>
+  </div>
+</main>
+
+
