@@ -30,7 +30,6 @@
 
   .user_name,.email{
     display: flex;
-    align-items: center;
     gap: 10px;
     margin: 0px;
     height: 30px;
@@ -41,9 +40,13 @@
     margin-left: 110px;
   }
 
+  .follow {
+  display: flex;
+  align-items: center;
+}
+
   .favorited,.favorite_index,.follows,.followers{
     display:flex;
-    align-items: center;
     gap: 10px;
     margin-left: 5px;
   }
@@ -93,20 +96,21 @@
         </div>
       </div>
 
-      <div class = "follow">
+      <div class="follow">
         <div class="follows">
           <p>フォロー</p>
           <%= link_to follows_admin_user_path(@user) do %>
-            <h6><%= @user.followers.count %></h6>
+            <%= @user.followers.count %>
           <% end %>
         </div>
         <div class="followers">
-           <p>フォロワー</p>
+          <p>フォロワー</p>
           <%= link_to followers_admin_user_path(@user) do %>
-            <h6><%= @user.followereds.count %></h6>
+            <%= @user.followereds.count %>
           <% end %>
         </div>
       </div>
+
       <% if @user.suspended %>
         <div class = "suspend" style="color: red; font-weight: bold;　">
          <p>利用停止中のユーザーです</p>

@@ -27,11 +27,21 @@
   .logo,.about,.sign_out,.sign_up,.icon {
        display: inline-block;
 }
-  .header form.button_to {
-    width:82px;
-    margin-right:20px;
-    margin-left:20px;
+
+
+   .header form.button_to {
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
+
+  .header form.button_to {
+    width:100px;
+    margin:20px;
+  }
+
+
+
 
   .btn-outline {
   background-color: transparent;

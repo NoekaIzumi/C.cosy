@@ -31,13 +31,21 @@
 
 <div class = "user" >
   <%= link_to admin_user_path(@post.user) do %>
-    <%= image_tag @post.user.image,size: "50x50" %>
-    <%= @post.user.name %>(投稿者)
+    <% if @post.user.image.present? %>
+      <%= image_tag @post.user.image,size: "50x50" %>
+    <% else %>
+      <%= image_tag 'guest.png',size: "50x50"%>
+    <% end %>
   <% end %>
+  <%= @post.user.name %>(投稿者)
 </div>
 
 <div class = "image">
-  <%= image_tag @post.image,size: "200x200" %>
+        <% if @post.image.present? %>
+          <%= image_tag @post.image,size: "200x200" %>
+        <% else %>
+          <%= image_tag 'post_no_image.png',size: "200x200" %>
+        <% end %>
 </div>
 
 <div class = "tags">

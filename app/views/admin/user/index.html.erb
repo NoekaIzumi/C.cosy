@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'admin' %>
 <header>
 
   <div class = "title">
@@ -43,6 +44,7 @@
 
   form.button_to {
     margin:20px;
+    width: 180px;
   }
 
   .btn-outline {
@@ -51,12 +53,22 @@
   border-color: transparent;
 }
 
+main{
+  display: flex;
+  justify-content: center;
+}
+
+
 .container {
   display: flex;
 }
 
 .title {
   margin-bottom: 30px;
+}
+
+.table {
+  margin: 0 auto;
 }
 
 .suspendrd form.button_to {
@@ -67,54 +79,52 @@
   color: red;
 }
 
-.suspend .btn {
-  color: white;
-  background-color: red;
-  border-color: red;
-  border-radius: 5%;
-  font-weight: bold;
+.suspend {
+  width: 180px;
 }
+
 
 </style>
 
-<div class="container">
+<main>
 
-<div class = "title">
-ユーザー一覧
-</div>
-  <div class="table">
-    <table class="table">
-      <% @users.each do |user| %>
-      <tr>
-        <div class = "user" >
-          <td>
-            <%= link_to admin_user_path(user) do %>
-                  <% if user.image.present? %>
-                    <%= image_tag user.image,size: "100x100" %>
-                  <% else %>
-                    <%= image_tag 'guest.png'%>
+  <div class="content">
+
+    <div class = "sub-title">
+    <p>ユーザー一覧</p>
+    </div>
+          <table class="table">
+            <% @users.each do |user| %>
+            <tr>
+              <div class = "user" >
+                <td>
+                  <%= link_to admin_user_path(user) do %>
+                        <% if user.image.present? %>
+                          <%= image_tag user.image,size: "100x100" %>
+                        <% else %>
+                          <%= image_tag 'guest.png'%>
+                        <% end %>
                   <% end %>
+                </td>
+              </div>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <%= button_to "投稿一覧",  user_posts_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+                <%= button_to "コメント一覧", user_comments_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+                <% if user.suspended %>
+                  <div class = "suspended">
+                    <%= button_to "利用停止中", admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+                  </div>
+                <% else %>
+                  <div class = "suspend">
+                    <%= button_to "利用停止にする", suspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" },
+                    form: { data: { turbo_confirm: 'このユーザーを利用停止にしますか?' }}, class: "btn btn-danger" %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
             <% end %>
-          </td>
-        </div>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= button_to "投稿一覧",  user_posts_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-          <%= button_to "コメント一覧", user_comments_path(user) , method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-          <% if user.suspended %>
-            <div class = "suspended">
-              <%= button_to "利用停止中", admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
-            </div>
-          <% else %>
-            <div class = "suspend">
-              <%= button_to "利用停止にする", suspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" },
-              form: { data: { turbo_confirm: 'このユーザーを利用停止にしますか?' }}, class: 'btn btn-default btn-outline' %>
-            </div>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+          </table>
   </div>
-</div>
+</main>

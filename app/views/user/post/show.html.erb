@@ -56,7 +56,11 @@
               <% end %>
             <% end %>
         <% else %>
-            <%= image_tag @post.user.image,size: "50x50" %>
+             <% if @post.user.image.present? %>
+                <%= image_tag @post.user.image,size: "50x50" %>
+              <% else %>
+                <%= image_tag 'guest.png',size: "50x50"%>
+              <% end %>
         <% end %>
             <%= @post.user.name %>(投稿者)
       </div>
