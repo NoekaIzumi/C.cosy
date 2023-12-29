@@ -29,7 +29,7 @@
         <div class = "sub-title">
             <p><%= @user.name %>のお気に入り一覧</p>
         </div>
-            <% if @favorite_posts.present? && @favorite_posts.exists? %>
+            <% if @favorite_posts.present? && @favorite_posts.present? %>
                 <%= render partial: "layouts/admin/post", collection: @favorite_posts %>
             <% else %>
                 <p>お気に入りの投稿はありません</p>

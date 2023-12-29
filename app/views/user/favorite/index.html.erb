@@ -3,7 +3,7 @@
         <div class = "title">
             <p><%= @user.name %>のお気に入り一覧</p>
         </div></br>
-            <% if @favorite_posts.present? && @favorite_posts.exists? %>
+            <% if @favorite_posts.present? && @favorite_posts.present? %>
                 <%= render partial: "layouts/post", collection: @favorite_posts %>
             <% else %>
               <div class = "message">

@@ -16,7 +16,7 @@ ja:
     failure:
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       already_authenticated: すでにログインしています。
-      invalid: "%{authentication_keys}またはパスワードが違います。"
+      invalid:  ""
       unauthenticated: ログインしてください。
 
     registrations:
