@@ -6,8 +6,6 @@ class User < ApplicationRecord
   #バリデーション
   validates :name,length:{ maximum: 10 }, presence: true
   validates :email, length:{ maximum: 50}, presence: true
-  validates :password, presence: true
-
 ##フォロー機能
   # フォローをした、されたの関係
 has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

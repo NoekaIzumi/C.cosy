@@ -94,7 +94,7 @@
       <% if @post.user == current_user %>
       <div class = "post_button">
           <div clas = "edit">
-            <%= button_to "編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: 'btn btn-default' %>
+            <%= button_to "編集する" ,edit_user_post_path(@post), method: :get, data: { turbo_frame: "posts" },class: "btn btn-default" %>
           </div>
           <div class="post-delete">
                         <%= button_to "削除", user_post_destroy_path(@post), method: :delete,form: { data: { turbo_confirm: '本当に削除しますか?' }}, class: "btn-sm btn-danger" %>

@@ -6,19 +6,17 @@
 
 <main>
   <div class="content">
-    <div class = "title">
+    <div class = "sub-title">
         <p>下書き</p>
     </div>
         <% if @draft_posts.empty? %>
           <div class = "container">
-            <div class = "message">
               <p>下書きはありません</p>
-            </div>
           </div>
         <% else %>
           <%= render partial: "layouts/post", collection: @draft_posts %>
         <% end %>
-  
+
   </div>
 </main>
 </div>
