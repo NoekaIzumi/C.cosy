@@ -7,8 +7,9 @@
       <% end %>
     </div>
 
+    <% if user_signed_in? %>
     <div class = "header">
-      <% if user_signed_in? %>
+
         <div class = "about">
           <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
         </div>
@@ -17,17 +18,19 @@
         </div>
         <div class = "icon_post">
           <%= link_to new_user_post_path do %>
-            <%= image_tag 'pen.jpeg', size: "30x30" %>
+            <p><%= image_tag 'pen.jpeg', size: "30x30" %></p>
           <% end %>
         </div>
         <div class = "icon_draft">
           <%= link_to draft_user_post_index_path do %>
-            <%= image_tag 'draft.png', size: "30x30" %>
+            <p><%= image_tag 'draft.png', size: "30x30" %></p>
           <% end %>
         </div>
+    </div>
 
+    <% else %>
+    <div class = "header">
 
-      <% else %>
         <div class = "about">
           <%= button_to "About",  about_path, method: :get, data: { turbo_frame: "homes" },class: 'btn btn-default btn-outline' %>
         </div>

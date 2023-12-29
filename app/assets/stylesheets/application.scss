@@ -19,10 +19,19 @@
   .header {
 
   margin-top: 20px;
-  margin-bottom: 60px;
   width: 700px;
-  text-align: buttom;
+  display: flex;
   }
+
+ p img {
+  vertical-align: bottom;
+  margin: 20px 20px 0 20px; /* 上 右 下 左 の順に指定 */
+}
+
+.icon_post, .icon_draft {
+  padding: 0 10px;
+  width: 100px;
+}
 
   .logo,.about,.sign_out,.sign_up,.icon {
        display: inline-block;
