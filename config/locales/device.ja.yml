@@ -2,10 +2,12 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      blank: を入力してください
+      blank: を入力してください。
       too_long: は%{count}文字以内で入力してください。
       too_short: は%{count}文字以上で入力してください。
       not_saved: ""#非表示
+      taken: "は既に使用されています。"
+
     activerecord:
       errors:
         messages:
@@ -40,6 +42,9 @@ ja:
   activerecord:
     attributes:
       user:
+        name:  ユーザー名
+        email: メールアドレス
+        password: パスワード
       post:
         password: パスワード
         email: メールアドレス
@@ -47,11 +52,5 @@ ja:
         budget:  予算
         closest:  最寄り駅
         distance: 距離
-
-      user:
-        name:  ユーザー名
-        email: メールアドレス
-        password: パスワード
-
       admin:
-        email: メールアドレス
+        email: メールアドレスs
