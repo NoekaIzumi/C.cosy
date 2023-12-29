@@ -4,6 +4,16 @@
         <div class = "title">
             <p>投稿を編集する</p>
         </div>
+
+        <% if @post.errors.any? %>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
+
+
         <%= form_with model: [:user, @post], local: true do |f| %>
         <table>
           <tr>

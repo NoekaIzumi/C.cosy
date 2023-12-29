@@ -60,6 +60,7 @@ class User::PostController < ApplicationController
   end
 
   def update
+    @current_user = current_user
     @post = Post.find(params[:id])
     if params[:post][:image].present?
       @post.image.attach(params[:post][:image])
@@ -73,7 +74,8 @@ class User::PostController < ApplicationController
         end
         redirect_to user_post_path(@post)
       else
-      	render :edit
+        @errors = @post.errors
+      	render :edit,status: :unprocessable_entity
       end
   end
 
