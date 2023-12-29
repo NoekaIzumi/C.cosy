@@ -39,5 +39,10 @@ ja:
   activerecord:
     attributes:
       user:
+      post:
         password: パスワード
         email: メールアドレス
+        restaurant_name:  お店の名前
+        budget:  予算
+        closest:  最寄り駅
+        distance: 距離

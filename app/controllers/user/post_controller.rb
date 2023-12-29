@@ -40,8 +40,8 @@ class User::PostController < ApplicationController
         redirect_to user_post_path(@post)
       end
     else
-       flash[:alert] = "投稿に失敗しました。必要な項目を入力してください。"
-       render "new"
+       @errors = @post.errors
+       render "new",status: :unprocessable_entity
     end
   end
 
