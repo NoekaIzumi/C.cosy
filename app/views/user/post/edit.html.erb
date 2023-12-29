@@ -11,6 +11,7 @@
             <td>
                 <% if @post.image.attached? %>
                     <%= image_tag @post.image, size: "150x150" %>
+                     <p>現在投稿されている画像</p>
                  <% end %></br>
                 <%= f.file_field :image %></td>
           </tr>

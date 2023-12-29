@@ -32,10 +32,11 @@ class User::PostController < ApplicationController
     @post.tag_ids = tag_ids
 
     if @post.save
-    flash[:notice] = "投稿しました."
       if @post.published?
+      flash[:notice] = "投稿しました。"
         redirect_to posts_path
       else
+         flash[:notice] = "下書きに保存しました。"
         redirect_to user_post_path(@post)
       end
     else
@@ -60,11 +61,16 @@ class User::PostController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
     if params[:post][:image].present?
       @post.image.attach(params[:post][:image])
     end
+
       if @post.update(post_params)
+        if @post.published?
+          flash[:notice] = "投稿を公開しました。"
+        else
+          flash[:notice] = "投稿を非公開にしました。"
+        end
         redirect_to user_post_path(@post)
       else
       	render :edit
