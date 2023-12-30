@@ -69,7 +69,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts.clear
-  config.web_console.allowed_ips = '0.0.0.0/0'
+  #config.web_console.allowed_ips = '0.0.0.0/0'
 
 
 end
