@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
 
       t.references :user, foreign_key: true,   null: false
       t.string  :restaurant_name,                   null: false, default: ""
-      t.integer :budget,                            null: false, default: ""
+      t.integer :budget,                            default: 0
       t.string  :closest,                           null: false, default: ""
       t.string :distance,                          null: false, default: ""
 
