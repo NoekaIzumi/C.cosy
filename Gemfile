@@ -64,7 +64,6 @@ gem 'kaminari'
 gem 'enum_help'
 gem 'bootstrap', '~> 5.0', '>= 5.0.3'
 
-#デプロイ
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
