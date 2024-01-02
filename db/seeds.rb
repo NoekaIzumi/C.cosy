@@ -10,6 +10,7 @@ Admin.create([
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Tag.where(name: '女子会').destroy_all
 Tag.create([
   { name: '女子会' },
   { name: 'サプライズ' },
