@@ -14,6 +14,7 @@
     <th class="col-1"></th>
     <th class="col-1"></th>
   </tr>
+<% if @comments.present? %>
 <% @comments.each do |comment| %>
   <tr>
     <td class="col-8"><%= comment.comment %></td>
@@ -21,6 +22,11 @@
     <td class="col-1">
     <%= button_to '削除', admin_user_comment_path(comment.user, comment), method: :delete, form: { data: { turbo_confirm: '本当に削除しますか?' }},class: "btn btn-sm btn-danger" %>
     </td>
+  </tr>
+<% end %>
+<% else %>
+  <tr>
+    <td class="col-8"><p>コメントはありません</p></td>
   </tr>
 <% end %>
 </table>
