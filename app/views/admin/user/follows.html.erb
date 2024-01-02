@@ -30,7 +30,7 @@ side_bar {
       <p><%= @user.name %>がフォロー中のユーザー</p>
     </div>
     <% if @users.exists? %>
-      <%= render "user/user/index", users: @users %>
+      <%= render "layouts/index_follower&follow", users: @users %>
     <% else %>
       <p>フォロー中のユーザーはいません</p>
     <% end %>

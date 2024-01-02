@@ -60,38 +60,43 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_02_162458) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user", null: false
-    t.integer "post", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "post_id"
-    t.bigint "user_id"
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.bigint "post", null: false
-    t.bigint "tag", null: false
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user", null: false
-    t.string "restaurant_name"
+    t.integer "user_id", null: false
+    t.string "restaurant_name", default: "", null: false
     t.integer "budget", default: 0
-    t.string "closest"
-    t.string "distance"
+    t.string "closest", default: "", null: false
+    t.string "distance", default: "", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.bigint "follower", null: false
-    t.bigint "followered", null: false
+    t.integer "follower_id", null: false
+    t.integer "followered_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["follower", "followered"], name: "index_relationships_on_follower_and_followered", unique: true
+    t.index ["follower_id", "followered_id"], name: "index_relationships_on_follower_id_and_followered_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["followered_id"], name: "index_relationships_on_followered_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -114,4 +119,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_02_162458) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "users"
+  add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "relationships", "users", column: "followered_id"
 end
