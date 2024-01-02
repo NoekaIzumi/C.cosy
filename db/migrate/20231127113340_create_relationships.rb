@@ -6,7 +6,7 @@ class CreateRelationships < ActiveRecord::Migration[7.0]
       t.bigint :followered, foreign_key: {to_table: "users"},   null: false
       t.timestamps
 
-      t.index [:follower_id, :followered_id], unique: true
+      t.index [:follower, :followered], unique: true
     end
   end
 end
