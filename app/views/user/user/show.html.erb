@@ -19,24 +19,12 @@ main {
   .user_profile{
     display: flex;
     gap: 10px;
-  }
-
-  .user {
-    padding-top: 20px;
-    margin: 0px;
-  }
-
-  .user_name,.email{
-    display: flex;
-    margin-bottom: 0px;
-    margin-right: 5px;
-    padding: 0;
+    height: 70px;
+    margin-bottom: 20px;
   }
 
   .user_name{
-    gap: 10px;
-    margin: 0px;
-    height: 30px;
+    padding-top: 40px;
   }
 
   .favorite,.follow,.followings {
@@ -69,16 +57,10 @@ main {
         <% else %>
           <%= image_tag 'guest.png' %>
         <% end %>
-        <div class = "user">
           <div class="user_name">
             ユーザー名
             <%= @user.name %>
           </div>
-          <div class="email">
-            メールアドレス
-            <%= @user.email %>
-          </div>
-        </div>
       </div>
 
       <div class = "favorite">
