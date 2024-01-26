@@ -7,6 +7,6 @@ class Admin::CommentsController < ApplicationController
   def destroy#任意のユーザーのコメント一覧から任意のコメントを削除
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to admin_user_comments_path(params[:user_id])
+    redirect_to admin_post_path(params[:post_id])
   end
 end
