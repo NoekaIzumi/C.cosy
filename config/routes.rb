@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :user do
-      patch 'suspend', on: :member # ユーザーを利用停止にするルート
+      member do
+        patch 'suspend'# ユーザーを利用停止にするルート
+        patch 'unsuspend'#利用停止を解除するルート
+      end
      resources :comments, only: [:index, :destroy]#コメント一覧/削除
      resources :favorite,only: [:index]
      member do

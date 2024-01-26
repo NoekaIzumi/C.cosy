@@ -71,7 +71,7 @@ main{
   margin: 0 auto;
 }
 
-.suspendrd form.button_to {
+.suspended form.button_to {
   color: #F00;
 }
 
@@ -115,6 +115,10 @@ main{
                 <% if user.suspended %>
                   <div class = "suspended">
                     <%= button_to "利用停止中", admin_user_path(user), method: :get, data: { turbo_frame: "admins" }, class: 'btn btn-default btn-outline' %>
+                  </div>
+                  <div class = "suspend">
+                    <%= button_to "利用停止を解除する", unsuspend_admin_user_path(user), method: :patch, data: { turbo_frame: "admins" },
+                      form: { data: { turbo_confirm: '利用停止を解除しますか?' }}, class: "btn btn-primary" %>
                   </div>
                 <% else %>
                   <div class = "suspend">

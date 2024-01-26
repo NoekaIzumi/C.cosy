@@ -32,6 +32,12 @@ end
     redirect_to admin_user_path(@user), notice: 'ユーザーを利用停止にしました。'
   end
 
+  def unsuspend
+    @user = User.find(params[:id])
+    @user.update(suspended: false)
+    redirect_to admin_user_path(@user), notice: 'ユーザーの利用停止を解除しました。'
+  end
+
   private
 
   def user_params
