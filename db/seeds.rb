@@ -1,4 +1,6 @@
-Admin.create([
+#以下初期データ
+
+Admin.find_or_create_by!([
   { email: 'noeka.izumi@outlock.jp',
     password: 'admin123' }
 ])
@@ -11,11 +13,15 @@ Admin.create([
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Tag.create([
+tags_data = [
   { name: '女子会' },
   { name: 'サプライズ' },
   { name: 'ランチ' },
   { name: 'ディナー' },
   { name: 'ソファー席あり' },
   { name: '個室あり' }
-])
+]
+
+tags_data.each do |tag_params|
+  Tag.find_or_create_by!(tag_params)
+end
