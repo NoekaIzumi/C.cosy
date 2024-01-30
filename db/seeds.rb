@@ -1,4 +1,4 @@
-#以下初期データ
+#以下初期データ(ADMIN)
 
 Admin.find_or_create_by!(
   email: "noeka.izumi@outlock.jp"
@@ -20,6 +20,7 @@ end
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+#以下初期データ(TAG)
 Tag.find_or_create_by(name: '女子会')
 Tag.find_or_create_by(name: 'サプライズ')
 Tag.find_or_create_by(name: 'ランチ')
@@ -27,7 +28,7 @@ Tag.find_or_create_by(name: 'ディナー')
 Tag.find_or_create_by(name: 'ソファー席あり')
 Tag.find_or_create_by(name: '個室あり')
 
-#以下テストデータ
+#以下テストデータ(USER)
 
 olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
   user.name = "Olivia"
@@ -47,7 +48,7 @@ lucas = User.find_or_create_by!(email: "lucas@example.com") do |user|
   user.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.png"), filename:"sample-user3.jpg")
 end
 
-#以下テストデータ
+#以下テストデータ(POST)
 
 Post.find_or_create_by!(restaurant_name: "Cavello") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
