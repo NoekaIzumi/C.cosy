@@ -60,8 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_02_162458) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id"
+    t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -79,10 +79,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_02_162458) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "restaurant_name", default: "", null: false
+    t.string "restaurant_name"
     t.integer "budget", default: 0
-    t.string "closest", default: "", null: false
-    t.string "distance", default: "", null: false
+    t.string "closest"
+    t.string "distance"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
