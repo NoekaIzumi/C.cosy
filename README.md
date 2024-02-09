@@ -33,8 +33,12 @@ Retty、Hotpepperなど既存サービスではどちらかと言えば「お店
 ## 設計書
 後ほど作成予定
 
+- ルーティング
+https://docs.google.com/spreadsheets/d/1mOmutP07Mwkv8f-Zdv-dYYzmW7hLt9nMYDN7ApBbPOk/edit?usp=sharing
 - 実装機能リストURL
 https://docs.google.com/spreadsheets/d/1EDOB92f5pk7_A4MDCc0rasau0GyBrmn-eo5FKkJ24-w/edit?usp=sharing
+- テスト仕様書
+https://docs.google.com/spreadsheets/d/1mCiRrLP139kJd1DY-L_eNMN9Wh6Lz1RL/edit?usp=sharing&ouid=109910638569100643104&rtpof=true&sd=true
 ​
 ## 開発環境
 - OS：Linux(CentOS)
