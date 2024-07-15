@@ -11,7 +11,7 @@ before_action :authenticate_admin!
   def index_user#任意のユーザーの投稿一覧
     @posts = Post.where(user_id: params[:id])
     # 下書き状態の投稿を表示しないようにフィルタリング
-    @posts = @posts.where.not(status: :draft)
+    @posts = @post.where.not(status: :draft)
   end
 
   def show

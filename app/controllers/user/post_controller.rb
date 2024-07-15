@@ -2,6 +2,7 @@ class User::PostController < ApplicationController
 
   def index
 
+    @posts = Post.all.order(created_at: :desc)
     @posts = Post.includes(:post_tags)
     @posts = @posts.where('restaurant_name LIKE ? OR closest LIKE ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%") if params[:keyword].present?
     @posts = @posts.where('post_tags.tag_id': params[:tag_id]) if params[:tag_id].present?
@@ -52,11 +53,21 @@ class User::PostController < ApplicationController
     @comment = Comment.new
     @comments= Comment.where(post_id: @post.id)
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
+
+    # 他の人の下書き状態の投稿を表示しないようにフィルタリング
+    if @post.draft? && @post.user != current_user
+      redirect_to posts_path
+    end
   end
 
   def edit
     @post = Post.find(params[:id])
     @current_user = current_user
+
+    @user= @post.user
+     unless @post.user.id == current_user.id
+      redirect_to posts_path
+     end
   end
 
   def update
