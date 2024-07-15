@@ -1,4 +1,5 @@
 class Admin::CommentsController < ApplicationController
+before_action :authenticate_admin!
   def index#任意のユーザーのコメント一覧
   @user = User.find(params[:user_id])
   @comments = @user.comments
