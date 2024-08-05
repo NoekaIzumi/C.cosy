@@ -141,3 +141,25 @@ main{
   margin-right: 5px;
   background-color: #99FFCC; /* 好みの色に変更してください */
 }
+
+.post-show-img{
+height: 200px;
+width: 200px;
+object-fit: cover;
+}
+
+.user-show-img{
+height: 100px;
+width: 100px;
+object-fit: cover;
+}
+
+.user-comment-img{
+height: 50px;
+width: 50px;
+object-fit: cover;
+}
+
+.mt-5 {
+  margin-top: 0 !important;
+}

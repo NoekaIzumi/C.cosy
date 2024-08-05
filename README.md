@@ -31,6 +31,7 @@ Retty、Hotpepperなど既存サービスではどちらかと言えば「お店
 - 実際にお店を利用した人の口コミを見るとき
 ​
 ## 設計書
+- WBS https://docs.google.com/spreadsheets/d/1Q4rp37jOHeovJktaPzhny-R6_r4M2i5S3IPHGfNPIYU/edit?usp=drive_link
 - ER図
 https://drive.google.com/file/d/1ddwr9wNHAZnCAGArEN1sUbcy9binsZOS/view?usp=sharing
 - ワイヤーフレーム

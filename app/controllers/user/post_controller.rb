@@ -52,13 +52,14 @@ class User::PostController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments= Comment.where(post_id: @post.id)
-    @comments = @post.comments.page(params[:page]).per(7).reverse_order
-
+    # コメントを昇順で取得し、ページネーションを適用
+    @comments = @post.comments.order(:created_at).page(params[:page]).per(7)
     # 他の人の下書き状態の投稿を表示しないようにフィルタリング
     if @post.draft? && @post.user != current_user
       redirect_to posts_path
     end
   end
+
 
   def edit
     @post = Post.find(params[:id])

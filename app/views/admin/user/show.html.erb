@@ -72,9 +72,9 @@ main {
     <div class="user_info">
       <div class="user_profile">
         <% if @user.image.present? %>
-          <%= image_tag @user.image, size: "100x100" %>
+          <%= image_tag @user.image,class:"user-show-img" %>
         <% else %>
-          <%= image_tag 'guest.png' %>
+          <%= image_tag 'guest.png',class:"user-show-img" %>
         <% end %>
         <div class = "user">
           <div class="user_name">

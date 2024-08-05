@@ -9,15 +9,15 @@ before_action :authenticate_admin!
   end
 
   def index_user#任意のユーザーの投稿一覧
-    @posts = Post.where(user_id: params[:id])
+    @posts = Post.where(user_id: params[:id]).where.not(status: :draft)
     # 下書き状態の投稿を表示しないようにフィルタリング
-    @posts = @post.where.not(status: :draft)
   end
 
   def show
     @post = Post.find(params[:id])
     @comments= Comment.where(post_id: @post.id)
-    @comments = @post.comments.page(params[:page]).per(7).reverse_order
+   # コメントを昇順で取得し、ページネーションを適用
+    @comments = @post.comments.order(:created_at).page(params[:page]).per(7)
   end
 
   private
